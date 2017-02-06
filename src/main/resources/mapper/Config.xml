@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.IConfigOperation">
+
+    <select id="selectConfigs" resultType="bean.Config">
+        select * from config
+    </select>
+
+    <select id="selectConfigNums" parameterType="string" resultType="int">
+        select count(*) from config where config.packname = #{packname}
+    </select>
+
+
+    <select id="selectConfigByID" parameterType="int" resultType="bean.Config">
+        select * from config where config.pid = #{pid}
+    </select>
+
+
+    <select id="selectConfigByName" parameterType="string" resultType="bean.Config">
+        select * from config where config.packname = #{packname}
+    </select>
+
+    <insert id="addConfig" parameterType="bean.Config"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into config(pid,packname,svn_version,forder_name,
+        exe_file_path,store_root_path,store_path,versions_path,enterprise_path,enterprise_name,package_time,exone,extwo)
+        values(#{pid},#{packname},#{svn_version},#{forder_name},#{exe_file_path},#{store_root_path},#{store_path},#{versions_path},#{enterprise_path},#{enterprise_name},#{package_time},
+        #{exone},#{extwo})
+    </insert>
+
+    <update id="updateConfig" parameterType="bean.Config" >
+        update config set packname=#{packname},svn_version=#{svn_version},forder_name=#{forder_name},exe_file_path=#{exe_file_path},store_root_path=#{store_root_path},
+        store_path=#{store_path},versions_path=#{versions_path},enterprise_path=#{enterprise_path},enterprise_name=#{enterprise_name},package_time=#{package_time},
+        exone=#{exone},extwo=#{extwo}
+        where pid=#{pid}
+    </update>
+
+    <delete id="deleteConfig" parameterType="string">
+        delete from config where packname=#{packname}
+    </delete>
+</mapper>

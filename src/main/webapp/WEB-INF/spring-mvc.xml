@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+     <!--自动扫描且只扫描@Controller-->
+    <context:component-scan base-package="controller" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <bean class = "org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <array>
+                <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" />
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+    <mvc:resources mapping="/static/**" location="/static/" />
+    <bean      class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+    <bean
+            class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    </bean>
+
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    <!--&lt;!&ndash; 静态资源访问（不拦截此目录下的东西的访问） &ndash;&gt;-->
+
+
+    <!--&lt;!&ndash;file upload&ndash;&gt;-->
+    <!--<bean id="fileValidator" class="controller.download.FileUploadValidator" />-->
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+    <!--file upload-->
+
+</beans>

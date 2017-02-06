@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.IIosLogOperation">
+
+    <select id="selectIosLogs" resultType="bean.IosLog">
+        select * from ioslog where viewflag='1' order by pack_time
+    </select>
+
+    <select id="selectIosLogNums" resultType="int">
+        select count(*) from ioslog where viewflag='1'
+    </select>
+
+    <select id="selectIosLogByProductName" parameterType="String" resultType="String">
+        select file_name from ioslog where product_name = #{product_name} and viewflag='1'order by pack_time
+    </select>
+
+
+    <select id="selectIosLogFilenames" resultType="bean.IosLog">
+        select * from ioslog where file_name like #{file_name_section} and viewflag='1' order by pack_time DESC limit #{start_flag},#{end_flag}
+    </select>
+
+    <select id="selectIosLogFilenameNums" resultType="int" parameterType="String">
+        select count(*) from ioslog where file_name like #{file_name_section} and viewflag='1'
+    </select>
+
+    <select id="selectIosLogByPEM" resultType="String">
+        select file_name from ioslog where product_name=#{product_name} and edition=#{edition} and mode=#{mode} and viewflag='1' order by pack_time
+    </select>
+
+    <select id="selectIosLogByID" parameterType="int" resultType="bean.IosLog">
+        select * from ioslog where id = #{id}
+    </select>
+
+    <select id="selectIosLogsByMode" parameterType="string" resultType="bean.IosLog">
+        select * from ioslog where ioslog.mode = #{mode} and viewflag='1'
+    </select>
+
+    <select id="selectIosLogByName" parameterType="string" resultType="bean.IosLog">
+        select * from ioslog where ioslog.packname = #{packname} and viewflag='1'
+    </select>
+
+    <!--下一页，上一页的功能-->
+    <select id="selectIosLogSection" resultType="bean.IosLog">
+            select * from ioslog where viewflag='1' order by id DESC limit #{start_flag},#{end_flag}
+    </select>
+
+    <!--下一页，上一页的功能-->
+    <select id="selectFilenamesSection" resultType="bean.IosLog">
+        select * from ioslog where viewflag='1' order by id DESC limit #{start_flag},#{end_flag}
+    </select>
+
+    <insert id="addIosLog" parameterType="bean.IosLog"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ioslog(packname,main_version,svn_version,file_name,store_root_path,store_path,svn_url,product_name,edition,platform,mode,on_off,ip,nums,pack_time,isstore,viewflag,exone,extwo,exthree)
+        values(#{packname},#{main_version},#{svn_version},#{file_name},#{store_root_path},#{store_path},#{svn_url},#{product_name},#{edition},#{platform},#{mode},#{on_off},#{ip},#{nums},#{pack_time},#{isstore},#{viewflag},#{exone},#{extwo},#{exthree})
+    </insert>
+
+    <update id="updateIosLog" parameterType="bean.IosLog" >
+        update ioslog set packname=#{packname},main_version=#{main_version},svn_version=#{svn_version},file_name=#{file_name},store_root_path=#{store_root_path},store_path=#{store_path},svn_url=#{svn_url},
+        product_name=#{product_name},edition=#{edition},platform=#{platform},mode=#{mode},on_off=#{on_off},ip=#{ip},nums=#{nums},pack_time=#{pack_time},isstore=#{isstore},viewflag=#{viewflag},exone=#{exone},extwo=#{extwo},exthree=#{exthree}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteIosLog" parameterType="string">
+        delete from ioslog where packname=#{packname}
+    </delete>
+
+    <select id="getiosreadyinfo" resultType="bean.IosLog">
+        select * from ioslog where packname like '%ready%' or packname like '%ppstore%'
+    </select>
+</mapper>
