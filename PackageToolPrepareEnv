@@ -6,7 +6,7 @@
 ==软件安装========
 一：PackageTool开发环境部署
 1.1 软件：IntelliJ IDEA 1.8.0, Mysql 14.14, Navicat for Mysql 9.1.3, Maven 3.2.3, Java SDK 1.7.0, ext包，Tomcat 7.0.69
-1.2 IntelliJ: 下载源代码打开工程文件后，在configurations中增加Tomact server, 在deployment中增加war exploded
+1.2 IntelliJ: 下载源代码，用导入maven工程的方式打开工程文件后，在configurations中增加Tomact server, 在deployment中增加war exploded
 1.3 Mysql: 执行指令更换密码mysqladmin -u root -p password root 输入初始密码，完成
 1.4 Navicat: 创建数据库packagetook, 执行packagetool.sql创建表和相关数据
 1.6 ext包：提供的ext包中的内容拷贝到环境变量JAVA_HOME目录下的jre/lib与lib目录下
