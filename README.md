@@ -1,4 +1,4 @@
-gg# packagetools
+# packagetools
 ...
 1.执行packagetool.sql创建数据库
 2.配置电脑环境变量：JAVA_HOME，GRADLE_HOME,ANDROID_HOME,MAEN_HOME（建议使用tomcat7与jdk7 进行https下载通信，笔者尝试使用更高版本的jdk与tomcat版本，均无法成功）
