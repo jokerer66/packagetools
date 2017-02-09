@@ -12,7 +12,7 @@ import service.*;
 import java.io.File;
 
 /**
- * Created by apple on 2016/12/15.sam
+ * Created by apple on 2016/12/15.
  */
 public class AndroidPack implements AndroidPackInterface{
 
