@@ -76,14 +76,17 @@
     function pack(inpara){
       var svnversion=prompt("是否需要指定svn号打包,请填写指定打包的svn号,不填写,则默认采用最新svn号","");//将输入的内容赋给变量 svnversion ，
       //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值
-      if(svnversion)//如果返回的有内容
-      {
-        alert("指定版本打包 项目:"+inpara+" svn:"+svnversion);
-        pack2(inpara,svnversion);
-      }else{
+      if (svnversion==""){
         alert("最新svn号打包 项目:"+inpara);
         pack2(inpara,"lastversion");
       }
+      else if (svnversion&&svnversion!=""){
+              alert("指定版本打包 项目:"+inpara+" svn:"+svnversion);
+              pack2(inpara,svnversion);
+           }
+           else{
+
+           }
     }
   </script>
 

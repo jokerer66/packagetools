@@ -99,9 +99,11 @@ public class PackInfo implements PackInfoInterface {
         if(savetpye.equals("1")){
             svnInfo1.setPid(xx);
             config1.setPid(xx);
+            svnInfo1.setSort(xx + "");
         }else{
             svnInfo1.setPid(Integer.valueOf((String)page_map.get("ctr_pid")));
             config1.setPid(Integer.valueOf((String)page_map.get("ctr_pid")));
+            svnInfo1.setSort(xx-1 + "");
         }
 
         svnInfo1.setPackname(page_map.get("ctr_packname").toString());
@@ -113,7 +115,6 @@ public class PackInfo implements PackInfoInterface {
         svnInfo1.setPlatform(project.getPlatform());
         svnInfo1.setBusy_status("free");
         svnInfo1.setIn_time(myTime.getTime_database());
-        svnInfo1.setSort(xx + "");
         svnInfo1.setExone("");
         svnInfo1.setExtwo("");
         svnInfo1.setExthree("");
