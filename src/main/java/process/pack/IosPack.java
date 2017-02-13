@@ -59,7 +59,7 @@ public class IosPack implements IosPackInterface {
     }
 
     @Override
-    public String packios(String packname) {
+    public String packios(String packname,String svnversion) {
         //IOS打单包方法，流程包括1.svn代码下载 2.编译环境准备，文件内容修改 3.ant编译 4.新建文件夹并移包 5.上传包到136
         init();
         IosLog iosLog=new IosLog();
@@ -112,7 +112,11 @@ public class IosPack implements IosPackInterface {
 
             //0.3 获取svn版本号以及打包开始时间以及需要建立的文件夹名称,并存储到数据库中
             log.level("info", "********** step 0.3 : Get svn version and update database starting. **********");
-            pack_ios_svn_version = mysvn.getversion(svnInfo_ios.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword());
+            if(svnversion.equals("lastversion")){
+                pack_ios_svn_version = mysvn.getversion(svnInfo_ios.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword());
+            }else{
+                pack_ios_svn_version = svnversion;
+            }
             pack_ios_time = myTime.getTime();
             pack_ios_time_database = myTime.getTime_database();
             pack_dir_name = svnInfo_ios.getPackname() + "_" + pack_ios_time + "_" + pack_ios_svn_version + "_" + onoff_context;
@@ -125,12 +129,12 @@ public class IosPack implements IosPackInterface {
             log.level("info", "********** step 1.1 : Update or checkout source code from svn url starting. **********");
             if (myFile.hasfile(svnInfo_ios.getLocal_path(),"0","xcworkspace")) {
                 log.level("info", "********** step 1.2 : Update source code from svn url starting. **********");
-                flag_pack_ios = mysvn.doUpdate(svnInfo_ios.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword(), svnInfo_ios.getLocal_path());
+                flag_pack_ios = mysvn.doUpdate(svnInfo_ios.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword(), svnInfo_ios.getLocal_path(),svnversion);
                 flag_checkout_update = "1";//表示代码是update出来的
 
             } else {
                 log.level("info", "********** step 1.3 : checkout source code from svn url starting. **********");
-                flag_pack_ios = mysvn.doCheckOut(svnInfo_ios.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword(), svnInfo_ios.getLocal_path());
+                flag_pack_ios = mysvn.doCheckOut(svnInfo_ios.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword(), svnInfo_ios.getLocal_path(),svnversion);
                 flag_checkout_update = "0";//表示代码是checkout出来，需要open -a Xcode XXX.xcworkspace操作
             }
 

@@ -34,7 +34,7 @@ public class MySVN {
 	}
 
 	//update
-	public String doUpdate(String url,String uname,String upwd,String localFile){
+	public String doUpdate(String url,String uname,String upwd,String localFile,String svnversion){
 
 		long versionNum = 0L;
 		String result = "null";
@@ -66,7 +66,12 @@ public class MySVN {
 			//************************************************************
 
 			//进行更新代码操作
-			versionNum = updateClient.doUpdate(updateFile, SVNRevision.HEAD, SVNDepth.INFINITY,false,false);
+
+			if(svnversion.equals("lastversion")){
+				versionNum = updateClient.doUpdate(updateFile, SVNRevision.HEAD, SVNDepth.INFINITY,false,false);
+			}else{
+				versionNum = updateClient.doUpdate(updateFile, SVNRevision.parse(svnversion), SVNDepth.INFINITY,false,false);
+			}
 
 			result = versionNum+"";
 		}catch(SVNException e){
@@ -78,7 +83,7 @@ public class MySVN {
 	}
 
 	//check out
-	public String doCheckOut(String svnurl,String uname,String upwd,String localfile){
+	public String doCheckOut(String svnurl,String uname,String upwd,String localfile,String svnversion){
 
 		String result = "null";
 		long workingVersion = 0L;
@@ -107,7 +112,12 @@ public class MySVN {
 			System.out.println("hi2="+hi);*/
 
 		//************************
-		workingVersion = updateClient.doCheckout(repositoryURL, wcDir, SVNRevision.HEAD, SVNRevision.HEAD, SVNDepth.INFINITY,false);
+			if(svnversion.equals("lastversion")){
+				workingVersion = updateClient.doCheckout(repositoryURL, wcDir, SVNRevision.HEAD, SVNRevision.HEAD, SVNDepth.INFINITY,false);
+			}else{
+				workingVersion = updateClient.doCheckout(repositoryURL, wcDir, SVNRevision.HEAD, SVNRevision.parse(svnversion), SVNDepth.INFINITY,false);
+			}
+
 
 			result = workingVersion+"";
 

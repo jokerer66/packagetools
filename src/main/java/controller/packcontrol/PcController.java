@@ -32,10 +32,10 @@ public class PcController {
     //运行打包主方法，通过返回的id序号，获取对应的name，然后获取name在数据库中得各项参数，带入打包方法中进行打包
     @RequestMapping(value = "runPack",method = RequestMethod.POST)
     @ResponseBody
-    public static String runPack(@RequestParam String inPara){
+    public static String runPack(@RequestParam String inPara,String svnversion){
         String flag1 = "0";
-        System.out.println("Ready to pack "+inPara);
-        flag1 = new MyThread(inPara).output(inPara);
+        System.out.println("Ready to pack "+inPara+" and version = "+svnversion);
+        flag1 = new MyThread(inPara,svnversion).output(inPara,svnversion);
         System.out.println("flag1 from thread is = "+flag1);
         return flag1;
 

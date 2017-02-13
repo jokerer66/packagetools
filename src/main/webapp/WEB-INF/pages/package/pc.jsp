@@ -21,89 +21,70 @@
 
   <script language='javascript'>
 
-
-    function pack(inpara){
-
+    function pack2(inpara,svnversion){
       document.getElementById(inpara).innerText="打包进行中。。。";
       document.getElementById(inpara).style.color='#000000';
-
-      if(confirm('点击确定开始打包，请等待3-4mins。')){
-
-
-        $.post("${ctx}/pc/runPack?inPara="+inpara+"",function(data){
-
-          if (data == "0") {
-
-            alert("打包成功，请检查。");
-            location.reload();
-          } else if (data == "001") {
-
-            alert("数据库或者svn连不上.");
-            location.reload();
-          } else if(data=="002"){
-
-            alert("后台正在打包，请稍等");
-            location.reload();
-          }else if(data=="100"){
-            alert("Android 打包成功");
-            location.reload();
-          }else if(data=="101"){
-            alert("svn checkout 异常");
-            location.reload();
-          }else if(data=="102"){
-            alert("修改文件出现异常");
-            location.reload();
-
-          }else if(data=="103"){
-            alert("ready ant环境准备过程中出现异常")
-            location.reload();
-
-          }else if(data=="104"){
-            alert("ant 编译文件出现异常")
-            location.reload();
-
-
-          }else if(data=="200"){
-            alert("ios打包成功.");
-            location.reload();
-
-          }else if(data=="201"){
-            alert("ios svn 更新代码出现问题.");
-            location.reload();
-
-          }else if(data=="202"){
-            alert("ios svn 地址连接出现问题");
-            location.reload();
-
-          }else if(data=="203"){
-          alert("ios ios编译失败，请检查源代码");
-          location.reload();
-
-        }else if(data=="204"){
-            alert("ios源代码checkout成功，请使用xcode打开一次源代码，然后关闭xcode后重新点击打包。");
-            location.reload();
-
-          }else if(data=="205"){
-            alert("ios已有新的证书出现，请及时更新");
-            location.reload();
-
-          }else{
-
-            alert("返回数据为:"+data);
-            location.reload();
-
-          }
-
-        });
-
-
+      $.post("${ctx}/pc/runPack?inPara="+inpara+"&svnversion="+svnversion+"",function(data){
+      if (data == "0") {
+        alert("打包成功，请检查。");
+        location.reload();
+      } else if (data == "001") {
+        alert("数据库或者svn连不上.");
+        location.reload();
+      } else if(data=="002"){
+        alert("后台正在打包，请稍等");
+        location.reload();
+      }else if(data=="100"){
+        alert("Android 打包成功");
+        location.reload();
+      }else if(data=="101"){
+        alert("svn checkout 异常");
+        location.reload();
+      }else if(data=="102"){
+        alert("修改文件出现异常");
+        location.reload();
+      }else if(data=="103"){
+        alert("ready ant环境准备过程中出现异常")
+        location.reload();
+      }else if(data=="104"){
+        alert("ant 编译文件出现异常")
+        location.reload();
+      }else if(data=="200"){
+        alert("ios打包成功.");
+        location.reload();
+      }else if(data=="201"){
+        alert("ios svn 更新代码出现问题.");
+        location.reload();
+      }else if(data=="202"){
+        alert("ios svn 地址连接出现问题");
+        location.reload();
+      }else if(data=="203"){
+        alert("ios ios编译失败，请检查源代码");
+        location.reload();
+      }else if(data=="204"){
+        alert("ios源代码checkout成功，请使用xcode打开一次源代码，然后关闭xcode后重新点击打包。");
+        location.reload();
+      }else if(data=="205"){
+        alert("ios已有新的证书出现，请及时更新");
+        location.reload();
       }else{
+        alert("返回数据为:"+data);
         location.reload();
       }
-
+      });
     }
-
-
+    function pack(inpara){
+      var svnversion=prompt("是否需要指定svn号打包,请填写指定打包的svn号,不填写,则默认采用最新svn号","");//将输入的内容赋给变量 svnversion ，
+      //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值
+      if(svnversion)//如果返回的有内容
+      {
+        alert("指定版本打包 项目:"+inpara+" svn:"+svnversion);
+        pack2(inpara,svnversion);
+      }else{
+        alert("最新svn号打包 项目:"+inpara);
+        pack2(inpara,"lastversion");
+      }
+    }
   </script>
 
 </head>

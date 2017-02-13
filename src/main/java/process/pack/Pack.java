@@ -21,12 +21,14 @@ public class Pack implements PackInterface {
     GlobalSet globalSet;
 
     private String packname;
+    private String svnversion;
     MySVN mySVN;
     IosPackInterface iospack = new IosPack();
     AndroidPackInterface androidpack = new AndroidPack();
 
-    public Pack(String packname) {
+    public Pack(String packname,String svnversion) {
         this.packname = packname;
+        this.svnversion = svnversion;
     }
     public Pack() {
     }
@@ -66,7 +68,7 @@ public class Pack implements PackInterface {
                     //flag_choose = "100";//修改android为忙碌状态
                     System.out.println("*************** set android flag to busy with project = " + temp_productname+"*******************");
                     dealSvnInfo.updateBusyStatusByPlatform("busy", "android", temp_productname);
-                    flag_choose = androidpack.packandroid(packname);
+                    flag_choose = androidpack.packandroid(packname,svnversion);
 
                     //更新android为空闲状态
                     dealSvnInfo.updateBusyStatusByPlatform("free", "android", temp_productname);
@@ -76,7 +78,7 @@ public class Pack implements PackInterface {
                     //flag_choose = "200";//修改ios为忙碌状态
                     System.out.println("*************** set ios flag to busy with project = " + temp_productname+"*******************");
                     dealSvnInfo.updateBusyStatusByPlatform("busy", "ios", temp_productname);
-                    flag_choose = iospack.packios(packname);
+                    flag_choose = iospack.packios(packname,svnversion);
                     //更新ios为空闲状态
                     dealSvnInfo.updateBusyStatusByPlatform("free", "ios", temp_productname);
                     System.out.println("*************** set ios flag to free with project = " + temp_productname+"*******************");

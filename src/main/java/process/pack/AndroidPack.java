@@ -77,7 +77,7 @@ public class AndroidPack implements AndroidPackInterface{
          globalSet  = DealGlobalset.getInstance().getGlobalset();
     }
     @Override
-    public String packandroid(String packname){
+    public String packandroid(String packname,String svnversion){
 
         init();
 
@@ -112,8 +112,13 @@ public class AndroidPack implements AndroidPackInterface{
        }
         //1.1 删除源代码路径下的所有文件
         myFile.delFolder(svnInfo_android.getLocal_path());
+        if(svnversion.equals("lastversion")){
+            pack_android_svn_version = mysvn.getversion(svnInfo_android.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword());
+        }else{
+            pack_android_svn_version = svnversion;
+        }
 
-        pack_android_svn_version = mysvn.getversion(svnInfo_android.getSvn_url(), globalSet.getSvnusername(), globalSet.getSvnpassword());
+
         pack_android_time = myTime.getTime();
         //打包完成后的文件名
         pack_dir_name = packname + "_" + pack_android_time + "_" + pack_android_svn_version + "_" + pack_dir_onoff;
@@ -123,7 +128,7 @@ public class AndroidPack implements AndroidPackInterface{
         log.level("debug","********** step 1:pack_dir_path is : " + pack_dir_path + "***********\ndo checkouting\n");
 
 
-        flag_svn_checkout = mysvn.doCheckOut(svnInfo_android.getSvn_url(),globalSet.getSvnusername(), globalSet.getSvnpassword(),svnInfo_android.getLocal_path());
+        flag_svn_checkout = mysvn.doCheckOut(svnInfo_android.getSvn_url(),globalSet.getSvnusername(), globalSet.getSvnpassword(),svnInfo_android.getLocal_path(),svnversion);
         log.level("debug","********** step 1.2 : check out source code success. from svn:"+flag_svn_checkout+"**********\n");
         if (!flag_svn_checkout.contains("error") && !flag_svn_checkout.contains("null")) {
             //根据build.gradle文件是否存在来判断源代码是否为gradle类型以及ant类型
