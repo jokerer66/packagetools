@@ -13,8 +13,8 @@
     <!-- 配置数据源-->
     <bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName">
-            <value>org.gjt.mm.mysql.Driver</value>
-        </property>
+            <value>com.mysql.jdbc.Driver</value>
+            <!-- <value>org.gjt.mm.mysql.Driver</value>-->        </property>
         <property name="url">
             <value>jdbc:mysql://localhost:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
             <!--springmybaitis是我的数据库  -->
