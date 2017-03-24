@@ -154,4 +154,8 @@ public class DealAndroidLog {
         return iAndroidLogOperation.getandroidreadyinfo();
     }
 
+    public AndroidLog getLastPackinfo(String svn_url){
+        return iAndroidLogOperation.getLastPackinfo(svn_url);
+    }
+
 }

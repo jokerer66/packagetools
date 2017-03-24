@@ -14,6 +14,7 @@ public class SvnInfo {
     private String busy_status;
     private String in_time;
     private String sort;
+    private String isautopack;
     private String exone;
     private String extwo;
     private String exthree;
@@ -140,5 +141,13 @@ public class SvnInfo {
 
     public void setProductname(String productname) {
         this.productname = productname;
+    }
+
+    public String getIsautopack() {
+        return isautopack;
+    }
+
+    public void setIsautopack(String isautopack) {
+        this.isautopack = isautopack;
     }
 }

@@ -39,4 +39,6 @@ public interface ISvnInfoOperation {
     public List<SvnInfo> selectnotbusy(String platform, String productname);
 
     public List<SvnInfo> getAllSvninfoByProjectname (String projectname);
+
+    public List<SvnInfo> getLastSvn(String platform);
 }

@@ -33,7 +33,7 @@
 
     <!--选择所有的packnames用于显示在首页上-->
     <select id="getAllSvnInfoNames" resultType="string">
-        select packname from svninfo ORDER BY sort DESC
+        select packname from svninfo ORDER BY pid DESC
     </select>
 
     <!--通过id把表中所有信息选择出来-->
@@ -65,15 +65,15 @@
     <!--增加记录id自动生成-->
     <insert id="addSvnInfo" parameterType="bean.SvnInfo"
             useGeneratedKeys="true" keyProperty="id">
-        insert into svninfo(pid,packname,main_version,svn_url,local_path,productname,on_off,platform,busy_status,in_time,sort,projectname,exone,extwo,exthree)
-        values(#{pid},#{packname},#{main_version},#{svn_url},#{local_path},#{productname},#{on_off},#{platform},#{busy_status},#{in_time},#{sort},#{projectname},#{exone},#{extwo},#{exthree})
+        insert into svninfo(pid,packname,main_version,svn_url,local_path,productname,on_off,platform,busy_status,in_time,sort,projectname,isautopack,exone,extwo,exthree)
+        values(#{pid},#{packname},#{main_version},#{svn_url},#{local_path},#{productname},#{on_off},#{platform},#{busy_status},#{in_time},#{sort},#{projectname},#{isautopack},#{exone},#{extwo},#{exthree})
     </insert>
 
 
     <!--通过name更新数据，不能更新name-->
     <update id="updateSvnInfo" parameterType="bean.SvnInfo" >
         update svninfo set packname=#{packname},main_version=#{main_version},svn_url=#{svn_url},local_path=#{local_path},
-        productname=#{productname},on_off=#{on_off},platform=#{platform},busy_status=#{busy_status},in_time=#{in_time},sort=#{sort},projectname=#{projectname},exone=#{exone},extwo=#{extwo},exthree=#{exthree}
+        productname=#{productname},on_off=#{on_off},platform=#{platform},busy_status=#{busy_status},in_time=#{in_time},sort=#{sort},projectname=#{projectname},isautopack=#{isautopack},exone=#{exone},extwo=#{extwo},exthree=#{exthree}
         where pid=#{pid}
     </update>
 
@@ -93,5 +93,7 @@
         select * from svninfo where busy_status ="busy" and (platform = #{0} OR product_name=#{1})
     </select>
 
-
+    <select id="getLastSvn" parameterType="string" resultType="bean.SvnInfo">
+        select * from svninfo where platform = #{platform}  and isautopack="1" ORDER BY pid
+    </select>
 </mapper>

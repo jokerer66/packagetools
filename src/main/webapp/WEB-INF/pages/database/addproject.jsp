@@ -142,6 +142,8 @@
             var js_iosbuildtype = document.getElementById('text_iosbuildtype').value;
             var js_proversion_profile = document.getElementById('text_proversion_profile').value;
             var js_iosapp_path = document.getElementById('text_iosapp_path').value;
+
+
             js_before_context =  js_before_context.replace(/\n|\r\n/g,"<br>");
             js_after_context =  js_after_context.replace(/\n|\r\n/g,"<br>");
             $.post("${ctx}/addproject/saveproject?js_proid=" + js_proid + "&js_projectname=" + js_projectname +"&js_productname="+js_productname+"&js_iosbundleid="+js_iosbundleid+
@@ -238,6 +240,8 @@
                         document.getElementById('text_iosbuildtype').value = infos[9];
                         document.getElementById('text_proversion_profile').value = infos[10];
                         document.getElementById('text_iosapp_path').value = infos[11];
+
+
                     }
                 })
             }
@@ -378,6 +382,7 @@
                 <td><input class="text2" type="text" id="text_iosapp_path" value="/build/XXX/Build/Products/Release-iphoneos/XXX.app"></td>
                 <td><p class="text_yellow">(android不需要填写)</p></td>
             </tr>
+
             <tr>
                 <td><input class="but_style" type="button" onclick="search_project()"  value="通过projectname查询"></td>
                 <td><input class="but_style" type="button" onclick="save_data_project()"  value="保存"></td>

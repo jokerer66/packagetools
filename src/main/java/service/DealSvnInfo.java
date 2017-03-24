@@ -178,4 +178,8 @@ public class DealSvnInfo {
 
     }
 
+    public List<SvnInfo> getLastSvn(String platform){
+        return iSvnInfoOperation.getLastSvn(platform);
+    }
+
 }

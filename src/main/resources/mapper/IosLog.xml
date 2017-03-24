@@ -70,4 +70,8 @@
     <select id="getiosreadyinfo" resultType="bean.IosLog">
         select * from ioslog where packname like '%ready%' or packname like '%ppstore%'
     </select>
+
+    <select id="getLastPackinfo" parameterType="string" resultType="bean.IosLog">
+        SELECT * from ioslog where svn_url =#{svn_url} ORDER BY id LIMIT 1
+    </select>
 </mapper>

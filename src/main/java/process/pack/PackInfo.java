@@ -84,11 +84,6 @@ public class PackInfo implements PackInfoInterface {
         store_path_deal = packpath.substring(packpath.lastIndexOf("/")+1);
         store_root_path = packpath.substring(0,packpath.lastIndexOf("/"));
 
-
-
-
-        //增加svninfo表数据
-
         int xx = 0;
         if(DealSvnInfo.getInstance().getSvnInfoNums() == 0){
             xx = 1000;
@@ -105,7 +100,7 @@ public class PackInfo implements PackInfoInterface {
             config1.setPid(Integer.valueOf((String)page_map.get("ctr_pid")));
             svnInfo1.setSort(xx-1 + "");
         }
-
+        //增加svninfo表数据
         svnInfo1.setPackname(page_map.get("ctr_packname").toString());
         svnInfo1.setMain_version(page_map.get("ctr_main_version").toString());
         svnInfo1.setSvn_url(page_map.get("ctr_svnurl").toString());
@@ -119,6 +114,7 @@ public class PackInfo implements PackInfoInterface {
         svnInfo1.setExtwo("");
         svnInfo1.setExthree("");
         svnInfo1.setProjectname(project.getProjectname());
+        svnInfo1.setIsautopack(page_map.get("ctr_isautopack").toString());
         //增加config表数据
 
         config1.setPackname(page_map.get("ctr_packname").toString());
@@ -131,6 +127,7 @@ public class PackInfo implements PackInfoInterface {
         config1.setEnterprise_path("");
         config1.setEnterprise_name("");
         config1.setPackage_time("");
+
         config1.setExone("");
         config1.setExtwo("");
 
@@ -148,13 +145,7 @@ public class PackInfo implements PackInfoInterface {
 
             }
         }
-
         return flag;
 
     }
-
-    public String getSystemUsername(){
-        return System.getProperties().getProperty("user.name");
-    }
-
 }

@@ -107,7 +107,6 @@ public class Config {
         this.store_path = store_path;
     }
 
-
     public String getExone() {
         return exone;
     }

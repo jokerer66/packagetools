@@ -156,4 +156,8 @@ public class DealIosLog {
         return iosLogOperation.getiosreadyinfo();
     }
 
+    public IosLog getLastPackinfo(String svn_url){
+        return iosLogOperation.getLastPackinfo(svn_url);
+    }
+
 }

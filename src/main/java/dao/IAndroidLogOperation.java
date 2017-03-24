@@ -36,4 +36,6 @@ public interface IAndroidLogOperation {
     public void deleteAndroidLog(String packname);
 
     public List<AndroidLog> getandroidreadyinfo();
+
+    public AndroidLog getLastPackinfo(String svn_url);
 }

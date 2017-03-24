@@ -1,7 +1,6 @@
 package service;
 
 import bean.Config;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import dao.IConfigOperation;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

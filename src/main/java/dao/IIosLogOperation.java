@@ -36,4 +36,6 @@ public interface IIosLogOperation {
     public void deleteIosLog(String packname);
 
     public List<IosLog> getiosreadyinfo();
+
+    public IosLog getLastPackinfo(String svn_url);
 }

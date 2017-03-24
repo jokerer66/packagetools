@@ -64,7 +64,7 @@ public class AddInfoController {
 
         } else {
 
-            page_info = svnInfo.getPid() + "|" + svnInfo.getPackname() + "|" + svnInfo.getSvn_url() + "|" + svnInfo.getMain_version() + "|" +svnInfo.getProjectname();
+            page_info = svnInfo.getPid() + "|" + svnInfo.getPackname() + "|" + svnInfo.getSvn_url() + "|" + svnInfo.getMain_version() + "|" +svnInfo.getProjectname()+"|"+svnInfo.getIsautopack();
 
         }
 
@@ -74,7 +74,7 @@ public class AddInfoController {
 
     @RequestMapping(value = "saveInfoquick", method = RequestMethod.POST)
     @ResponseBody
-    public String saveInfoquick(@RequestParam String ctr_pid, String ctr_projectname,String ctr_packname, String ctr_svnurl, String ctr_main_version) {
+    public String saveInfoquick(@RequestParam String ctr_pid, String ctr_projectname,String ctr_packname, String ctr_svnurl, String ctr_main_version,String ctr_isautopack) {
 
         String flag_saveinfoquick = "0";
         Map page_map = new HashMap();
@@ -105,7 +105,7 @@ public class AddInfoController {
             page_map.put("ctr_packname", ctr_packname.trim());
             page_map.put("ctr_svnurl", ctr_svnurl.trim());
             page_map.put("ctr_main_version", ctr_main_version.trim());
-
+            page_map.put("ctr_isautopack", ctr_isautopack.trim());
             flag_saveinfoquick = PackInfo.getInstance().savepackinfo(page_map);
 
         }

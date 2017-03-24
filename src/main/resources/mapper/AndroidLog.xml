@@ -69,4 +69,7 @@
     <select id="getandroidreadyinfo" resultType="bean.AndroidLog">
         select * from androidlog where packname like '%ready%' or packname like '%googleplay%'
     </select>
+    <select id="getLastPackinfo" parameterType="string" resultType="bean.AndroidLog">
+        SELECT * from androidlog where svn_url =#{svn_url} ORDER BY id DESC LIMIT 1
+    </select>
 </mapper>

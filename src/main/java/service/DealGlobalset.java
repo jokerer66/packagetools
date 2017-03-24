@@ -1,7 +1,6 @@
 package service;
 
 import bean.GlobalSet;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import dao.GlobalsetDao;
 import helper.log.MyLogTest;
 import org.springframework.context.ApplicationContext;

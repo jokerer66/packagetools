@@ -166,7 +166,11 @@
                         document.getElementById('text_svnurl').value = infos[2];
                         document.getElementById('text_main_version').value = infos[3];
                         document.getElementById('select_projectinfo').value = infos[4];
-
+                        if(infos[5] == "1"){
+                            document.getElementById('text_isautopack').checked = true;
+                        }else if(infos[5] == "0"){
+                            document.getElementById('text_isautopack').checked = false;
+                        }
 
                     }
 
@@ -183,6 +187,12 @@
             var js_packname = document.getElementById('text_packname').value;
             var js_svnurl = document.getElementById('text_svnurl').value;
             var js_main_version = document.getElementById('text_main_version').value;
+            var js_isautopack = 0;
+            if(document.getElementById('text_isautopack').checked){
+                js_isautopack = 1;
+            }else{
+                js_isautopack = 0;
+            }
             if (confirm('确定保存?')) {
 
                var flag = button_checklogic();
@@ -191,7 +201,7 @@
                 if(flag == 0){
 
                 if (js_packname != null || js_svnurl != null) {
-                    $.post("${ctx}/addinfo/saveInfoquick?ctr_pid=" + js_pid +"&ctr_projectname="+js_projectname+ "&ctr_packname=" + js_packname + "&ctr_svnurl=" + js_svnurl + "&ctr_main_version=" + js_main_version
+                    $.post("${ctx}/addinfo/saveInfoquick?ctr_pid=" + js_pid +"&ctr_projectname="+js_projectname+ "&ctr_packname=" + js_packname + "&ctr_svnurl=" + js_svnurl + "&ctr_main_version=" + js_main_version+"&ctr_isautopack="+js_isautopack
                             , function (data) {
 
                                 if (data == "0") {
@@ -339,7 +349,11 @@
                 <td><input class="text2" type="text" id="text_main_version" value="1.1.3"></td>
                 <td><p class="text_yellow">主版本号</p></td>
             </tr>
-
+            <tr>
+                <td><p class="text_yellow">isautopack<br></p></td>
+                <td><input class="text2" type="checkbox" id="text_isautopack" value="0"></td>
+                <td><p class="text_yellow"></p></td>
+            </tr>
             <%--<tr>--%>
                 <%--<td><p class="text_yellow">ipa包最终存储路径:</p></td>--%>
                 <%--<td><input class="text2" type="text" id="text_store_root_path" value="/Users/${system_log_user_name}/Desktop/ios_build">--%>

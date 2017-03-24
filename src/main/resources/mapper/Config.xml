@@ -40,4 +40,6 @@
     <delete id="deleteConfig" parameterType="string">
         delete from config where packname=#{packname}
     </delete>
+
+
 </mapper>
