@@ -270,15 +270,16 @@ public class IosPack implements IosPackInterface {
                         }
                         String dsym_store = globalSet.getIos_packpath() +"/store_dsym";
                         myFile.addDirs(dsym_store);
-                        String bathhead = "dsym_store="+dsym_store+"\n" +
+                        String command_after = "dsym_store="+dsym_store+"\n" +
                                 "cp -r "+dsym_path+".zip $dsym_store/"+pack_ios_time+"."+pack_ios_svn_version+"."+project_ios.getProductname()+".app.dSYM.zip\n" +
                                 "cp -r "+app_path+".zip $dsym_store/"+pack_ios_time+"."+pack_ios_svn_version+"."+project_ios.getProductname()+".app.zip\n" ;
-                        log.level("debug", "command_after_auto_set_dsym_move :" + bathhead);
-                        myScript.run_command_file(bathhead, pack_ios_excute_path, "debug");
-                        bathhead = "ipaname="+ pack_dir_name+"\nipa_path="+ downipa_path+"/"+pack_dir_name+"/online/"+project_ios.getProductname()+".ipa\n";
-                        if(project_ios.getExe_after_context() != null && project_ios.getExe_after_context().equals("null") && project_ios.getExe_after_context().equals("")){
-                            log.level("debug", "command_after_user_defined :" + bathhead+project_ios.getExe_after_context());
-                            myScript.run_command_file(bathhead+project_ios.getExe_after_context(), pack_ios_excute_path, "debug");
+                        log.level("info", "command_after_auto_set_dsym_move :" + command_after);
+                        myScript.run_command_file(command_after, pack_ios_excute_path, "debug");
+                        command_after = command_before+
+                        "ipaname="+ pack_dir_name+"\nipa_path="+ downipa_path+"/"+pack_dir_name+"/online/"+project_ios.getProductname()+".ipa\n";
+                        if(project_ios.getExe_after_context() != null && !project_ios.getExe_after_context().equals("null") && !project_ios.getExe_after_context().equals("")){
+                            log.level("info", "command_after_user_defined :" + command_after+project_ios.getExe_after_context());
+                            myScript.run_command_file(command_after+project_ios.getExe_after_context(), pack_ios_excute_path, "debug");
                         }
 
                         //在iosLog表中插入打包日志数据

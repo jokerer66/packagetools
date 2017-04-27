@@ -14,6 +14,11 @@ public class GlobalSet {
     private String svnusername;
     private String svnpassword;
     private String hostip;
+    private String autopackstarthour;
+    private String autopackstartminute;
+    private String autopackperiod;
+
+
 
     public int getSetid() {
         return setid;
@@ -93,5 +98,29 @@ public class GlobalSet {
 
     public void setDownipa_filename(String downipa_filename) {
         this.downipa_filename = downipa_filename;
+    }
+
+    public String getAutopackstarthour() {
+        return autopackstarthour;
+    }
+
+    public void setAutopackstarthour(String autopackstarthour) {
+        this.autopackstarthour = autopackstarthour;
+    }
+
+    public String getAutopackstartminute() {
+        return autopackstartminute;
+    }
+
+    public void setAutopackstartminute(String autopackstartminute) {
+        this.autopackstartminute = autopackstartminute;
+    }
+
+    public String getAutopackperiod() {
+        return autopackperiod;
+    }
+
+    public void setAutopackperiod(String autopackperiod) {
+        this.autopackperiod = autopackperiod;
     }
 }

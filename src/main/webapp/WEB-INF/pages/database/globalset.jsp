@@ -156,11 +156,14 @@
             var js_svnusername = document.getElementById('text_svnusername').value;
             var js_svnpassword = document.getElementById('text_svnpassword').value;
             var js_hostip = document.getElementById('text_hostip').value;
-
+            var js_autopackstarthour = document.getElementById('text_autopackstarthour').value;
+            var js_autopackstartminute = document.getElementById('text_autopackstartminute').value;
+            var js_autopackperiod = document.getElementById('text_autopackperiod').value;
             if (confirm('确定保存?')) {
                 $.post("${ctx}/globalset/saveglobalset?js_sdkinfo=" + js_sdkinfo
                         + "&js_code_path=" + js_code_path +"&js_android_pack_path=" + js_android_pack_path+"&js_ios_pack_path=" + js_ios_pack_path
                         + "&js_tomcat_path=" + js_tomcat_path + "&js_downipa_filename=" + js_downipa_filename + "&js_svnusername=" + js_svnusername + "&js_svnpassword="+ js_svnpassword+"&js_hostip="+js_hostip
+                        + "&js_autopackstarthour=" +js_autopackstarthour +"&js_autopackstartminute=" + js_autopackstartminute+ "&js_autopackperiod=" + js_autopackperiod
                         , function (data) {
                             if(data == 1){
                                 alert("修改成功");location.reload();
@@ -173,7 +176,22 @@
             }
         }
 
+        function reset_autopacktimer(){
+            var js_autopackstarthour = document.getElementById('text_autopackstarthour').value;
+            var js_autopackstartminute = document.getElementById('text_autopackstartminute').value;
+            var js_autopackperiod = document.getElementById('text_autopackperiod').value;
+            if (confirm('确定重置?')) {
+                $.post("${ctx}/globalset/resettimer?js_autopackstarthour=" +js_autopackstarthour +"&js_autopackstartminute=" + js_autopackstartminute+ "&js_autopackperiod=" + js_autopackperiod
+                        , function (data) {
+                            if(data == 1){
+                                alert("重置成功");
+                            }else{
+                                alert("重置失败");
+                            }
 
+                        })
+            }
+        }
     </script>
 </head>
 <body>
@@ -240,11 +258,25 @@
                 <td><input class="text2" type="text" id="text_hostip" value="${globalset.hostip}"></td>
                 <td><p class="text_yellow"></p></td>
             </tr>
-
+            <tr>
+                <td><p class="text_yellow">自动打包开始时间:小时<br></p></td>
+                <td><input class="text2" type="text" id="text_autopackstarthour" value="${globalset.autopackstarthour}"></td>
+                <td><p class="text_yellow"></p></td>
+            </tr>
+            <tr>
+                <td><p class="text_yellow">自动打包开始时间:分钟<br></p></td>
+                <td><input class="text2" type="text" id="text_autopackstartminute" value="${globalset.autopackstartminute}"></td>
+                <td><p class="text_yellow"></p></td>
+            </tr>
+            <tr>
+                <td><p class="text_yellow">自动打包间隔时间(分钟)<br></p></td>
+                <td><input class="text2" type="text" id="text_autopackperiod" value="${globalset.autopackperiod}"></td>
+                <td><p class="text_yellow"></p></td>
+            </tr>
             <tr>
                 <%--<td><input class="but_style" type="button" onclick="search_project()"  value="通过projectname查询"></td>--%>
                 <td><input class="but_style" type="button" onclick="save_data_globalset()"  value="保存"></td>
-                <%--<td><input class="but_style" type="button" onclick="delete_project()" value="删除该条项目"></td>--%>
+                <td><input class="but_style" type="button" onclick="reset_autopacktimer()" value="重置自动打包定时器"></td>
             </tr>
 
         </table>

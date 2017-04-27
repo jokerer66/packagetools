@@ -72,6 +72,6 @@
     </select>
 
     <select id="getLastPackinfo" parameterType="string" resultType="bean.IosLog">
-        SELECT * from ioslog where svn_url =#{svn_url} ORDER BY id LIMIT 1
+        SELECT * from ioslog where svn_url =#{svn_url} ORDER BY id DESC LIMIT 1
     </select>
 </mapper>

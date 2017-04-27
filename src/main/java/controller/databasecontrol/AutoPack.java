@@ -23,20 +23,41 @@ import java.util.*;
  */
 @Service
 public class AutoPack implements ApplicationListener<ContextRefreshedEvent> {
+    public Timer timer ;
+    private static AutoPack autoPack;
+    public static AutoPack getInstance(){
+        if(autoPack == null){
+            synchronized (AutoPack.class){
+                if(autoPack == null)
+                    autoPack = new AutoPack();
+            }
+        }
+        return autoPack;
+    }
 
-    Timer timer = new Timer();
+    public AutoPack() {
+    }
+
+    public void resettimer(int autopackstarthour,int autopackstartminute,int autopackperiod){
+        if(timer == null){
+
+        } else{
+            timer.cancel();
+        }
+        doautopack(autopackstarthour,autopackstartminute,autopackperiod);
+    }
 
 
-
-    public void doautopack(){
+    public void doautopack(int autopackstarthour,int autopackstartminute,int autopackperiod){
+        timer = new Timer();
         Calendar calendar = Calendar.getInstance();
 
         // 指定01:00:00点执行
-        calendar.set(Calendar.HOUR_OF_DAY, 13);
-        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.HOUR_OF_DAY, autopackstarthour);
+        calendar.set(Calendar.MINUTE, autopackstartminute);
         calendar.set(Calendar.SECOND, 0);
         Date date = calendar.getTime();
-        MyLogTest.getInstance().level("info","start doautopack\n");
+        MyLogTest.getInstance().level("info","start doautopack with hour="+autopackstarthour+" minute= "+autopackstartminute+"  period = "+autopackperiod+"\n");
         final HttpRequest httpRequest = new HttpRequest();
         timer.schedule(new TimerTask() {
             @Override
@@ -75,7 +96,7 @@ public class AutoPack implements ApplicationListener<ContextRefreshedEvent> {
                     if(Integer.valueOf(svnnumberInSvn_ios)>Integer.valueOf(lastIosPackinfo.getSvn_version())){
                         MyLogTest.getInstance().level("info","dopack ios\n");
                         String flag1 = new MyThread(listsvninfo_ios.get(i).getPackname(),svnnumberInSvn_ios).output(listsvninfo_ios.get(i).getPackname(),svnnumberInSvn_ios);
-                        MyLogTest.getInstance().level("info","flag from autopack android thread is = "+flag1 +" i = "+ i );
+                        MyLogTest.getInstance().level("info","flag from autopack ios thread is = "+flag1 +" i = "+ i );
 
 //                        httpRequest.sendGet("http://localhost:8080/pack", "");
                     }else{
@@ -85,11 +106,14 @@ public class AutoPack implements ApplicationListener<ContextRefreshedEvent> {
 
 
             }
-        },date,1000*60*60*12);
+        },date,1000*60*autopackperiod);
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        doautopack();
+        autoPack = new AutoPack();
+        doautopack(Integer.valueOf(DealGlobalset.getInstance().getGlobalset().getAutopackstarthour()),
+                Integer.valueOf(DealGlobalset.getInstance().getGlobalset().getAutopackstartminute()),
+                        Integer.valueOf(DealGlobalset.getInstance().getGlobalset().getAutopackperiod()));
     }
 }

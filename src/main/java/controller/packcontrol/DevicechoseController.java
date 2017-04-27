@@ -14,7 +14,6 @@ public class DevicechoseController {
     @RequestMapping(method = RequestMethod.GET)
     public String showdevicechose(ModelMap model){
 
-
         model.addAttribute("message","hello");
 
         return "package/devicechose";
