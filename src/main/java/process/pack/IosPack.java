@@ -179,7 +179,7 @@ public class IosPack implements IosPackInterface {
                         String pack_bash = "";
                         if(project_ios.getIosbuildtype().contains("Automatic")){
                             pack_bash ="xcodebuild -target "+"$project_name"+" -configuration Release clean -sdk $sdk_change\n"+
-                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO  PROVISIONING_PROFILE=\"Automatic\"\n"+
+                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO \n"+
                                     "xcrun -sdk iphoneos PackageApplication -v $project_path$app_path " +
                                     "-o $ipa_output_path/online/"+project_ios.getProductname()+".ipa ";
 
@@ -203,8 +203,6 @@ public class IosPack implements IosPackInterface {
 
                         //checkout 与 update两种方式的代码需要不同的编译脚本
                         if(flag_checkout_update.contains("0")){
-
-
                             build_source_code_context = pre_str+
                                     "open -a Xcode $project_path/$project_name.xcworkspace\n" +
                                     "sleep 90\n"+

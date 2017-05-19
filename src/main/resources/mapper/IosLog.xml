@@ -68,7 +68,7 @@
     </delete>
 
     <select id="getiosreadyinfo" resultType="bean.IosLog">
-        select * from ioslog where packname like '%ready%' or packname like '%ppstore%'
+        select * from ioslog where packname like '%ready%' or packname like '%ppstore%' ORDER BY id DESC
     </select>
 
     <select id="getLastPackinfo" parameterType="string" resultType="bean.IosLog">

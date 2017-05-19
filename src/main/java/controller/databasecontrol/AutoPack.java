@@ -39,16 +39,14 @@ public class AutoPack implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     public void resettimer(int autopackstarthour,int autopackstartminute,int autopackperiod){
-        if(timer == null){
-
-        } else{
-            timer.cancel();
-        }
         doautopack(autopackstarthour,autopackstartminute,autopackperiod);
     }
 
 
     public void doautopack(int autopackstarthour,int autopackstartminute,int autopackperiod){
+        if(timer != null){
+            timer.cancel();
+        }
         timer = new Timer();
         Calendar calendar = Calendar.getInstance();
 
