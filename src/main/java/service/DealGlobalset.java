@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Created by apple on 2016/12/29.
  */
 public class DealGlobalset {
-    ApplicationContext ctx =null;
+    ApplicationContext ctx = null;
     MyLogTest log = null;
     GlobalsetDao globalsetDao;
 
@@ -28,17 +28,17 @@ public class DealGlobalset {
     }
 
     //方法0：构造函数，文件加载，类加载初始化
-    public DealGlobalset(){
+    public DealGlobalset() {
         ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
         globalsetDao = (GlobalsetDao) ctx.getBean("grobalsetDao");
         log = MyLogTest.getInstance();
     }
 
-    public Boolean updateGlobalset(GlobalSet globalset){
-        return  globalsetDao.updateGlobalset(globalset) == 1?true:false;
+    public Boolean updateGlobalset(GlobalSet globalset) {
+        return globalsetDao.updateGlobalset(globalset) == 1 ? true : false;
     }
 
-    public GlobalSet getGlobalset(){
-        return  globalsetDao.getGlobalset(1);
+    public GlobalSet getGlobalset() {
+        return globalsetDao.getGlobalset(1);
     }
 }
