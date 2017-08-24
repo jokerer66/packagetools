@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.subversion:svn-javahl-api:1.9.3-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/apache/subversion/svn-javahl-api/1.9.3-SNAPSHOT/svn-javahl-api-1.9.3-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/apache/subversion/svn-javahl-api/1.9.3-SNAPSHOT/svn-javahl-api-1.9.3-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/apache/subversion/svn-javahl-api/1.9.3-SNAPSHOT/svn-javahl-api-1.9.3-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

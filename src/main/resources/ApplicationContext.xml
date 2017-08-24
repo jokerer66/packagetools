@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:tx="http://www.springframework.org/schema/tx"
-        xmlns:p="http://www.springframework.org/schema/p"
-        xmlns:aop="http://www.springframework.org/schema/aop"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
-      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-     http://www.springframework.org/schema/tx
-     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-     http://www.springframework.org/schema/aop
-     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     <!-- 配置数据源-->
     <bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName">
             <value>com.mysql.jdbc.Driver</value>
-            <!-- <value>org.gjt.mm.mysql.Driver</value>-->        </property>
+            <!-- <value>org.gjt.mm.mysql.Driver</value>-->
+        </property>
         <property name="url">
+<<<<<<< HEAD
             <value>jdbc:mysql://192.168.2.55:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
             <!--springmybaitis是我的数据库  -->
+=======
+            <!--<value>jdbc:mysql://localhost:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>-->
+            <!--springmybaitis是我的数据库 -->
+            <value>jdbc:mysql://192.168.2.55:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
+>>>>>>> origin/master
         </property>
         <property name="username">
             <value>root</value>
@@ -28,7 +28,7 @@
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="jdbcDataSource" />
+        <property name="dataSource" ref="jdbcDataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
     </bean>
     <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -72,4 +72,8 @@
         <property name="mapperInterface" value="dao.SaveLinkDao"></property>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 </beans>

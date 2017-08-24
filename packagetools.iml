@@ -142,7 +142,7 @@
     <orderEntry type="library" name="Maven: org.tmatesoft.svnkit:svnkit-cli:1.8.14" level="project" />
     <orderEntry type="library" name="Maven: org.tmatesoft.svnkit:svnkit-javahl16:1.8.14" level="project" />
     <orderEntry type="library" name="Maven: org.apache.subversion:svn-javahl-api:1.9.3-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: com.trilead:trilead-ssh2:1.0.0-build220" level="project" />
+    <orderEntry type="library" name="Maven: com.trilead:trilead-ssh2:1.0.0-build219" level="project" />
     <orderEntry type="library" name="Maven: com.viskan:svntask:1.0.0" level="project" />
   </component>
 </module>

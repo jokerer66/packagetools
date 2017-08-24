@@ -17,11 +17,9 @@
 <head>
     <title>addproject</title>
     <style>
-
         .table-b table {
             border: 1px solid #F00
         }
-
         table.gridtable {
             font-family: verdana, arial, sans-serif;
             font-size: 11px;
@@ -29,7 +27,6 @@
             border-color: #666666;
             border-collapse: collapse;
         }
-
         table.gridtable th {
             border-width: 1px;
             color: #FFFFFF;
@@ -37,9 +34,7 @@
             border-style: solid;
             border-color: #08575B;
             background-color: #7F4614;
-
         }
-
         table.gridtable td {
             height: 40px;
             border-width: 1px;
@@ -49,11 +44,9 @@
             border-color: #08575B;
             background-color: #FFF8DC;
         }
-
         .text_stat {
             color: #862e32;
         }
-
         .text2 {
             width: 99%;
             height: 100%;
@@ -72,13 +65,11 @@
             margin: 0;
             background: #ffffff;
         }
-
         .title_2 {
             text-decoration: none;
             color: #862e32;
             font-size: 30px;
         }
-
         .text_yellow {
             width: 100%;
             height: 100%;
@@ -87,7 +78,6 @@
             margin: 0;
             background: #FFF8DC;
         }
-
         .but_style {
             width: 100%;
             height: 100%;
@@ -100,53 +90,37 @@
     </style>
 
     <script language="JavaScript">
-
         //判断输入的各项内容是否合法的正则表达式,pattern的值前后需要//包起来
         function isTrueName(patrn, s) {
             if (!patrn.exec(s)) return false
             return true
         }
-
         //检查输入的各项是否合法
         function button_checklogic() {
             var flag = 0;
             //判断packname取值是否正确
             if (!isTrueName(/^[a-zA-Z0-9\.-]{10,40}$/, document.getElementById('text_packname').value)) {
-
                 alert("打包项目名称输入不合法");
                 flag = 1;
-
             } else if (document.getElementById('text_sdkinfo').value == "") {
-
                 alert("sdk不能为空");
                 flag = 1;
-
             } else if (!isTrueName(/[0-2]/, document.getElementById('text_onoff').value)) {
-
                 alert("服务器类型输入不合法");
                 flag = 1;
-
             } else if (!(document.getElementById('text_platform').value == "android" || document.getElementById('text_platform').value == "ios")) {
-
                 alert("平台类型输入不合法");
                 flag = 1;
-
             } else if (document.getElementById('text_platform').value == "ios" && document.getElementById('text_iosbuildtype').value == "manual" &&
-                    (!isTrueName(/^([a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12})$/, document.getElementById('text_certificate').value)
-                    || document.getElementById('text_certificate').value == "")){
-
+                (!isTrueName(/^([a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12})$/, document.getElementById('text_certificate').value)
+                || document.getElementById('text_certificate').value == "")){
                 alert("证书名称输入不合法");
                 flag = 1;
-
             }
-
             return flag;
-
         }
-
         //保存数据到数据库
         function save_data_globalset() {
-
             var js_sdkinfo = document.getElementById('text_sdkinfo').value;
             var js_code_path = document.getElementById('text_code_path').value;
             var js_android_pack_path = document.getElementById('text_android_pack_path').value;
@@ -163,6 +137,7 @@
             js_httprequest = js_httprequest.replace("&","\&");
             if (confirm('确定保存?')) {
                 $.post("${ctx}/globalset/saveglobalset?js_sdkinfo=" + js_sdkinfo
+<<<<<<< HEAD
                         + "&js_code_path=" + js_code_path +"&js_android_pack_path=" + js_android_pack_path+"&js_ios_pack_path=" + js_ios_pack_path
                         + "&js_tomcat_path=" + js_tomcat_path + "&js_downipa_filename=" + js_downipa_filename + "&js_svnusername=" + js_svnusername + "&js_svnpassword="+ js_svnpassword+"&js_hostip="+js_hostip
                         + "&js_autopackstarthour=" +js_autopackstarthour +"&js_autopackstartminute=" + js_autopackstartminute+ "&js_autopackperiod=" + js_autopackperiod +"&js_httprequest="+js_httprequest
@@ -175,23 +150,33 @@
 
                         })
 
+=======
+                    + "&js_code_path=" + js_code_path +"&js_android_pack_path=" + js_android_pack_path+"&js_ios_pack_path=" + js_ios_pack_path
+                    + "&js_tomcat_path=" + js_tomcat_path + "&js_downipa_filename=" + js_downipa_filename + "&js_svnusername=" + js_svnusername + "&js_svnpassword="+ js_svnpassword+"&js_hostip="+js_hostip
+                    + "&js_autopackstarthour=" +js_autopackstarthour +"&js_autopackstartminute=" + js_autopackstartminute+ "&js_autopackperiod=" + js_autopackperiod
+                    , function (data) {
+                        if(data == 1){
+                            alert("修改成功");location.reload();
+                        }else{
+                            alert("修改失败");
+                        }
+                    })
+>>>>>>> origin/master
             }
         }
-
         function reset_autopacktimer(){
             var js_autopackstarthour = document.getElementById('text_autopackstarthour').value;
             var js_autopackstartminute = document.getElementById('text_autopackstartminute').value;
             var js_autopackperiod = document.getElementById('text_autopackperiod').value;
             if (confirm('确定重置?')) {
                 $.post("${ctx}/globalset/resettimer?js_autopackstarthour=" +js_autopackstarthour +"&js_autopackstartminute=" + js_autopackstartminute+ "&js_autopackperiod=" + js_autopackperiod
-                        , function (data) {
-                            if(data == 1){
-                                alert("重置成功");
-                            }else{
-                                alert("重置失败");
-                            }
-
-                        })
+                    , function (data) {
+                        if(data == 1){
+                            alert("重置成功");
+                        }else{
+                            alert("重置失败");
+                        }
+                    })
             }
         }
 

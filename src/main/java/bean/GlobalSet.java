@@ -124,6 +124,7 @@ public class GlobalSet {
     public void setAutopackperiod(String autopackperiod) {
         this.autopackperiod = autopackperiod;
     }
+<<<<<<< HEAD
 
     public String getHttprequest() {
         return httprequest;
@@ -133,3 +134,6 @@ public class GlobalSet {
         this.httprequest = httprequest;
     }
 }
+=======
+}
+>>>>>>> origin/master

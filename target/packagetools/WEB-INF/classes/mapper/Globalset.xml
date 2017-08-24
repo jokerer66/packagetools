@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GlobalsetDao">
+    <update id="updateGlobalset" parameterType="bean.GlobalSet">
+        UPDATE globalset SET  sdkinfo=#{sdkinfo},
+        codepath=#{codepath},android_packpath=#{android_packpath},ios_packpath=#{ios_packpath},tomcat_path=#{tomcat_path},downipa_filename=#{downipa_filename},svnusername=#{svnusername},svnpassword=#{svnpassword},hostip=#{hostip},
+        autopackstarthour=#{autopackstarthour},autopackstartminute=#{autopackstartminute},autopackperiod=#{autopackperiod}
+        WHERE setid=#{setid}
+    </update>
+
+    <select id="getGlobalset" parameterType="int" resultType="bean.GlobalSet">
+        select * from globalset where setid=#{setid};
+    </select>
+</mapper>

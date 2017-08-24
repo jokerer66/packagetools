@@ -27,20 +27,20 @@ public class DealConfig {
     }
 
     //方法0：构造函数，文件加载，类加载初始化
-    public DealConfig(){
+    public DealConfig() {
         ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
         iConfigOperation = (IConfigOperation) ctx.getBean("configDao");
     }
 
     //方法1：获取config表中所有数据
-    public List<Config> getConfigs(){
+    public List<Config> getConfigs() {
 
         List<Config> configs = iConfigOperation.selectConfigs();
 
         return configs;
     }
 
-    public int getConfigNums(String packname){
+    public int getConfigNums(String packname) {
 
         int config_nums = iConfigOperation.selectConfigNums(packname);
 
@@ -67,7 +67,7 @@ public class DealConfig {
     //方法4：添加Config记录，未处理重复的情况，应为添加的时候Svninfo表会处理重复的情况
     public Boolean addConfig(Config config) {
 
-        return iConfigOperation.addConfig(config)>0?true:false;
+        return iConfigOperation.addConfig(config) > 0 ? true : false;
 
 
     }
@@ -76,7 +76,7 @@ public class DealConfig {
     public Boolean updateConfig(Config config) {
 
 
-        return iConfigOperation.updateConfig(config)>=0?true:false;
+        return iConfigOperation.updateConfig(config) >= 0 ? true : false;
 
     }
 
@@ -98,4 +98,4 @@ public class DealConfig {
 
         return flag_delete_config;
     }
-    }
+}
