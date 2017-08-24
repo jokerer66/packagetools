@@ -59,8 +59,6 @@ public class GlobalSetController {
         }
     }
 
-
-<<<<<<< HEAD
     @RequestMapping(value = "sendhttprequest", method = RequestMethod.POST)
     @ResponseBody
     public String resettimer(@RequestParam String js_httprequest){
@@ -77,6 +75,4 @@ public class GlobalSetController {
     }
 
 }
-=======
-}
->>>>>>> origin/master
+

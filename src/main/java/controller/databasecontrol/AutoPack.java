@@ -78,16 +78,11 @@ public class AutoPack implements ApplicationListener<ContextRefreshedEvent> {
                         String flag1 = new MyThread(listsvninfo_android.get(i).getPackname(), svnnumberInSvn_android).output(listsvninfo_android.get(i).getPackname(), svnnumberInSvn_android);
                         MyLogTest.getInstance().level("info", "flag from autopack android thread is = " + flag1 + " i = " + i);
 
-<<<<<<< HEAD
 //                        httpRequest.sendPost("http://localhost:8080/soma-test2/starttest/starttest1", "devicename=0815f819b2770102(SM-N9200)&classname=com.instanza.soma.test.LoginTestClass");
                         httpRequest.sendPost("android");
                     }else{
                         MyLogTest.getInstance().level("info","donot pack android\n");
-=======
-//                        httpRequest.sendGet("http://localhost:8080/pack", "");
-                    } else {
-                        MyLogTest.getInstance().level("info", "donot pack android\n");
->>>>>>> origin/master
+
 
                     }
                 }
@@ -104,14 +99,11 @@ public class AutoPack implements ApplicationListener<ContextRefreshedEvent> {
                         MyLogTest.getInstance().level("info", "flag from autopack ios thread is = " + flag1 + " i = " + i);
 
 //                        httpRequest.sendGet("http://localhost:8080/pack", "");
-<<<<<<< HEAD
+
                         httpRequest.sendPost("ios");
                     }else{
                         MyLogTest.getInstance().level("info","donot pack ios\n");
-=======
-                    } else {
-                        MyLogTest.getInstance().level("info", "donot pack ios\n");
->>>>>>> origin/master
+
                     }
                 }
 

@@ -75,10 +75,9 @@ public class HttpRequest {
      * @return 所代表远程资源的响应结果
      */
     public static String sendPost(String url, String param) {
-<<<<<<< HEAD
+
         MyLogTest.getInstance().level("debug","get post request:"+url+"?"+param);
-=======
->>>>>>> origin/master
+
         PrintWriter out = null;
         BufferedReader in = null;
         String result = "";

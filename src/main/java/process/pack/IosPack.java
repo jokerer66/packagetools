@@ -154,99 +154,52 @@ public class IosPack implements IosPackInterface {
             //2.1 创建可执行文件
             myScript.create_exe_file(pack_ios_excute_path, "echo 11", "info");
 
-<<<<<<< HEAD
-                    //2.2 修改文件build.txt,xxxx-info.list内容，打成需要的包
-                    log.level("info", "********** step 2.2 : Create build.txt starting. **********");
-                    build_txt_context = pack_ios_time_database + "\n" + pack_ios_svn_version + "_" + onoff_context + "_" + svnInfo_ios.getSvn_url();
-                    String temp_flag_localonline = "N";
-                    if(svnInfo_ios.getOn_off().contains("0")){
-                        temp_flag_localonline = "L";
-                    }else if(svnInfo_ios.getOn_off().contains("1")){
-                        temp_flag_localonline = "O";
-                    }else if(svnInfo_ios.getOn_off().contains("2")){
-                        temp_flag_localonline = "B";
-                    }
-                String command_before = "local_path=" + svnInfo_ios.getLocal_path() +"\nsvn_version="+pack_ios_svn_version+"\nsvn_date_for_pi="+"\" \n"+pack_ios_svn_version+"_"+ temp_flag_localonline + myTime.getSimpleTime_database()+"\""+
-                        "\nsvn_date=\""+build_txt_context+"\"\n"+
-                        "packinfo_onoff="+svnInfo_ios.getOn_off()+"\n";
-
-
-                log.level("info","not-do-command_before:"+command_before+project_ios.getExe_before_context()+"\n");
-                myScript.run_command_file(command_before+project_ios.getExe_before_context()+"\n", pack_ios_excute_path, "info");
-                    log.level("info", "********** step 3.2 : Run command to build source code starting. **********");
-                    //*************** 3.2 开始编译源代码 **********
-
-                        String pack_bash = "";
-                        if(project_ios.getIosbuildtype().contains("Automatic")){
-                            pack_bash ="xcodebuild -target "+"$project_name2"+" -configuration Release clean -sdk $sdk_change\n"+
-                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name2"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO \n"+
-                                    "xcrun -sdk iphoneos PackageApplication -v $project_path$app_path " +
-                                    "-o $ipa_output_path/online/"+project_ios.getProductname()+".ipa ";
-
-                        }else{
-                            pack_bash ="xcodebuild -target "+"$project_name2"+" -configuration Release clean -sdk $sdk_change\n"+
-                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name2"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO  PROVISIONING_PROFILE=$provision\n"+
-                                    "xcrun -sdk iphoneos PackageApplication -v $project_path$app_path " +
-                                    "-o $ipa_output_path/online/"+project_ios.getProductname()+".ipa "+"--embed \"$provision_path\"";
-                        }
-
-
-                    String pre_str = "project_path=" + svnInfo_ios.getLocal_path() +
-                            "\nprovision=" + project_ios.getProversionprofile() + "\n" +
-                            "app_path="+ project_ios.getIosapppath()+"\n"+
-                            "cd $project_path\n"+
-                            "project_name=$(ls | grep xcworkspace | awk -F.xcworkspace '{print $1}')\n"+
-                            //coco的target名与xcworkspace不一致
-                            "project_name2=$(ls | grep xcodeproj | awk -F.xcodeproj '{print $1}')\n"+
-                            "ipa_output_path="+config_ios.getStore_root_path()+"/"+config_ios.getVersions_path()+"\n"+
-                            "sdk_change=$(xcodebuild -showsdks|grep iphoneos|awk '{print $4}')\n"+
-                            "security unlock-keychain -p apple /Users/"+System.getProperties().getProperty("user.name")+"/Library/Keychains/login.keychain\n";
-=======
             //2.2 修改文件build.txt,xxxx-info.list内容，打成需要的包
             log.level("info", "********** step 2.2 : Create build.txt starting. **********");
             build_txt_context = pack_ios_time_database + "\n" + pack_ios_svn_version + "_" + onoff_context + "_" + svnInfo_ios.getSvn_url();
             String temp_flag_localonline = "N";
-            if (svnInfo_ios.getOn_off().contains("0")) {
+            if(svnInfo_ios.getOn_off().contains("0")){
                 temp_flag_localonline = "L";
-            } else if (svnInfo_ios.getOn_off().contains("1")) {
+            }else if(svnInfo_ios.getOn_off().contains("1")){
                 temp_flag_localonline = "O";
-            } else if (svnInfo_ios.getOn_off().contains("2")) {
+            }else if(svnInfo_ios.getOn_off().contains("2")){
                 temp_flag_localonline = "B";
             }
-            String command_before = "local_path=" + svnInfo_ios.getLocal_path() + "\nsvn_version=" + pack_ios_svn_version + "\nsvn_date_for_pi=" + "\" \n" + pack_ios_svn_version + "_" + temp_flag_localonline + myTime.getSimpleTime_database() + "\"" +
-                    "\nsvn_date=\"" + build_txt_context + "\"\n" +
-                    "packinfo_onoff=" + svnInfo_ios.getOn_off() + "\n";
+            String command_before = "local_path=" + svnInfo_ios.getLocal_path() +"\nsvn_version="+pack_ios_svn_version+"\nsvn_date_for_pi="+"\" \n"+pack_ios_svn_version+"_"+ temp_flag_localonline + myTime.getSimpleTime_database()+"\""+
+                    "\nsvn_date=\""+build_txt_context+"\"\n"+
+                    "packinfo_onoff="+svnInfo_ios.getOn_off()+"\n";
 
 
-            log.level("info", "not-do-command_before:" + command_before + project_ios.getExe_before_context() + "\n");
-            myScript.run_command_file(command_before + project_ios.getExe_before_context() + "\n", pack_ios_excute_path, "info");
-            log.level("info", "********** step 3.2 : Run command to build source code starting. **********");
-            //*************** 3.2 开始编译源代码 **********
->>>>>>> origin/master
+            log.level("info","not-do-command_before:"+command_before+project_ios.getExe_before_context()+"\n");
+            myScript.run_command_file(command_before+project_ios.getExe_before_context()+"\n", pack_ios_excute_path, "info");
+                log.level("info", "********** step 3.2 : Run command to build source code starting. **********");
+                //*************** 3.2 开始编译源代码 **********
 
             String pack_bash = "";
-            if (project_ios.getIosbuildtype().contains("Automatic")) {
-                pack_bash = "xcodebuild -target " + "$project_name" + " -configuration Release clean -sdk $sdk_change\n" +
-                        "xcodebuild -workspace " + "$project_name" + ".xcworkspace -scheme " + "$project_name" + " -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO \n" +
+            if(project_ios.getIosbuildtype().contains("Automatic")){
+                pack_bash ="xcodebuild -target "+"$project_name2"+" -configuration Release clean -sdk $sdk_change\n"+
+                        "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name2"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO \n"+
                         "xcrun -sdk iphoneos PackageApplication -v $project_path$app_path " +
-                        "-o $ipa_output_path/online/" + project_ios.getProductname() + ".ipa ";
+                        "-o $ipa_output_path/online/"+project_ios.getProductname()+".ipa ";
 
-            } else {
-                pack_bash = "xcodebuild -target " + "$project_name" + " -configuration Release clean -sdk $sdk_change\n" +
-                        "xcodebuild -workspace " + "$project_name" + ".xcworkspace -scheme " + "$project_name" + " -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO  PROVISIONING_PROFILE=$provision\n" +
+            }else{
+                pack_bash ="xcodebuild -target "+"$project_name2"+" -configuration Release clean -sdk $sdk_change\n"+
+                        "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name2"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO  PROVISIONING_PROFILE=$provision\n"+
                         "xcrun -sdk iphoneos PackageApplication -v $project_path$app_path " +
-                        "-o $ipa_output_path/online/" + project_ios.getProductname() + ".ipa " + "--embed \"$provision_path\"";
+                        "-o $ipa_output_path/online/"+project_ios.getProductname()+".ipa "+"--embed \"$provision_path\"";
             }
 
 
             String pre_str = "project_path=" + svnInfo_ios.getLocal_path() +
                     "\nprovision=" + project_ios.getProversionprofile() + "\n" +
-                    "app_path=" + project_ios.getIosapppath() + "\n" +
-                    "cd $project_path\n" +
-                    "project_name=$(ls | grep xcworkspace | awk -F.xcworkspace '{print $1}')\n" +
-                    "ipa_output_path=" + config_ios.getStore_root_path() + "/" + config_ios.getVersions_path() + "\n" +
-                    "sdk_change=$(xcodebuild -showsdks|grep iphoneos|awk '{print $4}')\n" +
-                    "security unlock-keychain -p apple /Users/" + System.getProperties().getProperty("user.name") + "/Library/Keychains/login.keychain\n";
+                    "app_path="+ project_ios.getIosapppath()+"\n"+
+                    "cd $project_path\n"+
+                    "project_name=$(ls | grep xcworkspace | awk -F.xcworkspace '{print $1}')\n"+
+                    //coco的target名与xcworkspace不一致
+                    "project_name2=$(ls | grep xcodeproj | awk -F.xcodeproj '{print $1}')\n"+
+                    "ipa_output_path="+config_ios.getStore_root_path()+"/"+config_ios.getVersions_path()+"\n"+
+                    "sdk_change=$(xcodebuild -showsdks|grep iphoneos|awk '{print $4}')\n"+
+                    "security unlock-keychain -p apple /Users/"+System.getProperties().getProperty("user.name")+"/Library/Keychains/login.keychain\n";
 
 
             //checkout 与 update两种方式的代码需要不同的编译脚本
@@ -265,7 +218,6 @@ public class IosPack implements IosPackInterface {
             log.level("info", "command_on:" + build_source_code_context + "\n");
             flag_pack_ios = myScript.run_command_file_env(build_source_code_context, pack_ios_excute_path, "info");
 //                        flag_pack_ios ="400";
-<<<<<<< HEAD
                     //*************** 3.2 编译源代码结束 **********
                     log.level("info", "The result of run building source code is : " + flag_pack_ios);
 
@@ -301,38 +253,7 @@ public class IosPack implements IosPackInterface {
                             log.level("info","step 4.2:move_forder_to_tomcat is : "+move_forder_to_downipa);
                             myScript.run_command_file(move_forder_to_downipa, pack_ios_excute_path, "info");
                         }
-=======
-            //*************** 3.2 编译源代码结束 **********
-            log.level("info", "The result of run building source code is : " + flag_pack_ios);
 
-            ipa_in_versions = config_ios.getStore_root_path() + "/" + config_ios.getVersions_path() + "/online/" + project_ios.getProductname() + ".ipa";
-            log.level("info", "Full path of ipa in versions is : " + ipa_in_versions);
-
-            //编译脚本没有报出errors错误，ipa文件正常复制到version中，为编译正常的判断准则
-            if (flag_pack_ios.contains("400") && new File(ipa_in_versions).exists()) {
-
-                //4.1 新建文件夹并移动打好的包
-                log.level("info", "********** step 4.1 : Create forder to store .ipa starting. **********");
-                new File(pack_dir_path + "/online").mkdirs();
-                new File(pack_dir_path + "/local").mkdirs();
-                command_move_store_to_apps = "cp " + config_ios.getStore_root_path() + "/" + config_ios.getVersions_path() + "/online/" + project_ios.getProductname() + ".ipa " + pack_dir_path + "/online";
-                log.level("info", "step 4.1 move command is : " + command_move_store_to_apps);
-                myScript.run_command_file(command_move_store_to_apps, pack_ios_excute_path, "info");
-
-                //4.2 把已经打好包得文件夹移动到Apache下面的downipa中，用来下载
-                log.level("info", "********** step 4.2 : move ipa to apache tomcat downipa. **********");
-                String downipa_path = globalSet.getTomcat_path() + "/webapps/downipa/" + globalSet.getDownipa_filename();
-                myFile.addDirs(downipa_path);
-                if (new File(downipa_path).exists()) {
-                    String cp_to_tomcat = get_cp_to_tomcat_str(pack_dir_path, pack_dir_name, downipa_path);
-                    myScript.create_exe_file(pack_ios_excute_path2, "#!/bin/sh\n" + cp_to_tomcat, "info");
-                    move_forder_to_downipa = "sh " + pack_ios_excute_path2 + " " + project_ios.getProductname() + " " + project_ios.getProductname() + " " + project_ios.getIosbundleid() + " " +
-                            config_ios.getStore_root_path() + "/" + config_ios.getVersions_path() + "/online/" + project_ios.getProductname() + ".ipa";
-
-                    log.level("info", "step 4.2:move_forder_to_tomcat is : " + move_forder_to_downipa);
-                    myScript.run_command_file(move_forder_to_downipa, pack_ios_excute_path, "info");
-                }
->>>>>>> origin/master
 
 
                 //4.3 压缩$project_path/build/XXX/Build/Products/Release-iphoneos/XXX.app.dSYM 以及 XXX.app
