@@ -178,14 +178,14 @@ public class IosPack implements IosPackInterface {
 
                         String pack_bash = "";
                         if(project_ios.getIosbuildtype().contains("Automatic")){
-                            pack_bash ="xcodebuild -target "+"$project_name"+" -configuration Release clean -sdk $sdk_change\n"+
-                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO \n"+
+                            pack_bash ="xcodebuild -target "+"$project_name2"+" -configuration Release clean -sdk $sdk_change\n"+
+                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name2"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO \n"+
                                     "xcrun -sdk iphoneos PackageApplication -v $project_path$app_path " +
                                     "-o $ipa_output_path/online/"+project_ios.getProductname()+".ipa ";
 
                         }else{
-                            pack_bash ="xcodebuild -target "+"$project_name"+" -configuration Release clean -sdk $sdk_change\n"+
-                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO  PROVISIONING_PROFILE=$provision\n"+
+                            pack_bash ="xcodebuild -target "+"$project_name2"+" -configuration Release clean -sdk $sdk_change\n"+
+                                    "xcodebuild -workspace "+"$project_name"+".xcworkspace -scheme "+"$project_name2"+" -configuration Release -sdk $sdk_change  ONLY_ACTIVE_ARCH=NO  PROVISIONING_PROFILE=$provision\n"+
                                     "xcrun -sdk iphoneos PackageApplication -v $project_path$app_path " +
                                     "-o $ipa_output_path/online/"+project_ios.getProductname()+".ipa "+"--embed \"$provision_path\"";
                         }
@@ -196,6 +196,8 @@ public class IosPack implements IosPackInterface {
                             "app_path="+ project_ios.getIosapppath()+"\n"+
                             "cd $project_path\n"+
                             "project_name=$(ls | grep xcworkspace | awk -F.xcworkspace '{print $1}')\n"+
+                            //coco的target名与xcworkspace不一致
+                            "project_name2=$(ls | grep xcodeproj | awk -F.xcodeproj '{print $1}')\n"+
                             "ipa_output_path="+config_ios.getStore_root_path()+"/"+config_ios.getVersions_path()+"\n"+
                             "sdk_change=$(xcodebuild -showsdks|grep iphoneos|awk '{print $4}')\n"+
                             "security unlock-keychain -p apple /Users/"+System.getProperties().getProperty("user.name")+"/Library/Keychains/login.keychain\n";
@@ -231,6 +233,11 @@ public class IosPack implements IosPackInterface {
                         new File(pack_dir_path + "/online").mkdirs();
                         new File(pack_dir_path + "/local").mkdirs();
                         command_move_store_to_apps = "cp " + config_ios.getStore_root_path() + "/" + config_ios.getVersions_path() + "/online/" + project_ios.getProductname() + ".ipa " + pack_dir_path + "/online";
+
+                        //配合soma-test,在桌面生成soma.apk包
+                        command_move_store_to_apps = command_move_store_to_apps+"\n" +
+                                "rm -rf " + "/Users/"+System.getProperties().getProperty("user.name") + "/Desktop/" + project_ios.getProductname() + ".ipa" +"\n" +
+                                "cp " + config_ios.getStore_root_path() + "/" + config_ios.getVersions_path() + "/online/" + project_ios.getProductname() + ".ipa " + "/Users/"+System.getProperties().getProperty("user.name") + "/Desktop"+"\n";
                         log.level("info", "step 4.1 move command is : " + command_move_store_to_apps);
                         myScript.run_command_file(command_move_store_to_apps, pack_ios_excute_path, "info");
 

@@ -112,7 +112,10 @@
     <td class="v"><a href="${ctx}/fileUploadForm" >Upload ipa/apk Page</a></td>
     <td class="v"><a href="${ctx}/logfiledown" >Down Log File</a></td>
 </tr>
-<!--Package apk link-->
+  <!--Package save backend link added by catty-->
+  <tr>
+    <td class="v"><a href="${ctx}/savelink" >Backend Link Saved Page</a></td>
+  </tr>
 <c:forEach var="m" items="${message}" varStatus="id">
   <table style='width:100%'>
     <tr>

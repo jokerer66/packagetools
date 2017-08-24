@@ -1,6 +1,7 @@
 package controller.databasecontrol;
 
 import bean.GlobalSet;
+import helper.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class GlobalSetController {
 
     @RequestMapping(value = "saveglobalset", method = RequestMethod.POST)
     @ResponseBody
-    public String saveglobalset(@RequestParam String js_sdkinfo, String js_code_path,String js_android_pack_path,String js_ios_pack_path,String js_tomcat_path,String js_downipa_filename,String js_svnusername,String js_svnpassword,String js_hostip,String js_autopackstarthour,String js_autopackstartminute,String js_autopackperiod) {
+    public String saveglobalset(@RequestParam String js_sdkinfo, String js_code_path,String js_android_pack_path,String js_ios_pack_path,String js_tomcat_path,String js_downipa_filename,String js_svnusername,String js_svnpassword,String js_hostip,String js_autopackstarthour,String js_autopackstartminute,String js_autopackperiod,String js_httprequest) {
         GlobalSet globalSet = new GlobalSet();
         globalSet.setSdkinfo(js_sdkinfo);
         globalSet.setCodepath(js_code_path);
@@ -41,6 +42,7 @@ public class GlobalSetController {
         globalSet.setAutopackstarthour(js_autopackstarthour);
         globalSet.setAutopackstartminute(js_autopackstartminute);
         globalSet.setAutopackperiod(js_autopackperiod);
+        globalSet.setHttprequest(js_httprequest);
         globalSet.setSetid(1);
 
         return DealGlobalset.getInstance().updateGlobalset(globalSet)?"1":"0";
@@ -57,5 +59,20 @@ public class GlobalSetController {
         }
     }
 
+
+    @RequestMapping(value = "sendhttprequest", method = RequestMethod.POST)
+    @ResponseBody
+    public String resettimer(@RequestParam String js_httprequest){
+        try{
+            if(HttpRequest.sendPost("") != null){
+                return "1";
+            }else{
+                return "0";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "0";
+        }
+    }
 
 }

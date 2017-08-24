@@ -13,5 +13,6 @@
         <mapper resource="mapper/Project.xml"/>
         <mapper resource="mapper/Product.xml"/>
         <mapper resource="mapper/Globalset.xml"/>
+        <mapper resource="mapper/SaveLink.xml"/>
     </mappers>
 </configuration>

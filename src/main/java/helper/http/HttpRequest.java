@@ -1,6 +1,9 @@
 package helper.http;
 
 
+import helper.log.MyLogTest;
+import service.DealGlobalset;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,6 +24,7 @@ public class HttpRequest {
      * @return URL 所代表远程资源的响应结果
      */
     public static String sendGet(String url, String param) {
+        MyLogTest.getInstance().level("debug","get get request:"+url+"?"+param);
         String result = "";
         BufferedReader in = null;
         try {
@@ -75,7 +79,7 @@ public class HttpRequest {
      * @return 所代表远程资源的响应结果
      */
     public static String sendPost(String url, String param) {
-        System.out.println("get post request:"+url+"?"+param);
+        MyLogTest.getInstance().level("debug","get post request:"+url+"?"+param);
         PrintWriter out = null;
         BufferedReader in = null;
         String result = "";
@@ -122,7 +126,28 @@ public class HttpRequest {
                 ex.printStackTrace();
             }
         }
+        System.out.println("str   =  "+ result);
         return result;
+    }
+
+    public static String sendPost(String platform){
+        String url = "";
+        String param = "";
+        String tempstr = "";
+        String fullurl = DealGlobalset.getInstance().getGlobalset().getHttprequest();
+        url = fullurl.substring(0,fullurl.indexOf("?"));
+        param = fullurl.substring(fullurl.indexOf("?")+1);
+
+        if(platform.toLowerCase().equals("android")){
+            param = "devicename=0815f819b2770102(SM-N9200)&" + param.substring(param.indexOf("&")+1);
+            tempstr = sendPost(url,param);
+        }else if(platform.toLowerCase().equals("ios")){
+            param = "devicename=8dbf13a9fd894edfcc537cfc89399b8f03754182(iPhone%20(10.3.2))&" + param.substring(param.indexOf("&")+1);
+            tempstr = sendPost(url,param);
+        }else{
+//            tempstr = sendPost(url,param);
+        }
+        return tempstr;
     }
 
 //    public static void main(String[] args) {
@@ -130,7 +155,8 @@ public class HttpRequest {
 ////        String s=HttpRequest.sendGet("http://confluence.somaapp.com/pages/viewpage.action", "pageId=13211761");
 ////        System.out.println("get = "+s);
 //        //发送 POST 请求
-//        String sr=HttpRequest.sendPost("http://localhost:8080/packagetools/addinfo/saveInfoquick", "ctr_pid=1073&ctr_projectname=soma-ios-online&ctr_packname=soma-ios-1.6.5-debug-testst&ctr_svnurl=https://svn.somaapp.com/soma/trunk/ios/SOMA/trunk/BaBa-iOS-1.6.5&ctr_main_version=1.6.8&ctr_isautopack=0");
-//        System.out.println("post = "+sr);
+////        String sr=HttpRequest.sendPost("http://localhost:8080/packagetools/addinfo/saveInfoquick", "ctr_pid=1073&ctr_projectname=soma-ios-online&ctr_packname=soma-ios-1.6.5-debug-testst&ctr_svnurl=https://svn.somaapp.com/soma/trunk/ios/SOMA/trunk/BaBa-iOS-1.6.5&ctr_main_version=1.6.8&ctr_isautopack=0");
+////        System.out.println("post = "+sr);
+//        sendPost("");
 //    }
 }

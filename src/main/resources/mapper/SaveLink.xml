@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.SaveLinkDao">
+
+    <!--方法1：添加的操作-->
+    <insert id="addlinks" parameterType="bean.SaveLink" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO savelink (projectname,linkname,link,username,passwd)
+        VALUES (#{projectname},#{linkname},#{link},#{username},#{passwd})
+    </insert>
+
+    <!--方法2:通过link进行查询-->
+    <select id="selectByLink" parameterType="string" resultType="bean.SaveLink">
+         SELECT * FROM savelink WHERE link = #{link}
+    </select>
+
+    <!--方法3:通过link查询数量-->
+    <select id="selectNumsBylink" parameterType="string" resultType="int">
+        SELECT count(*) FROM savelink WHERE link = #{link}
+    </select>
+
+    <!--方法4:通过link查询后，删除该条记录-->
+    <delete id="deleteSaveLink" parameterType="string">
+        DELETE FROM savelink where link=#{link}
+    </delete>
+
+    <!--&lt;!&ndash;方法5:通过link查询后，更新该条记录&ndash;&gt;-->
+    <!--<update id="updateSaveLink" parameterType="bean.SaveLink">-->
+    <!--UPDATE savelink SET  projectname=#{projectname},linkname=#{linkname},link=#{link},username=#{username},passwd=#{passwd}-->
+    <!--WHERE link=#{link}-->
+    <!--</update>-->
+
+    <!--方法6:查询所有的savelink-->
+    <select id="selectAllSaveLink" resultType="bean.SaveLink">
+        SELECT * FROM savelink ORDER BY id DESC
+    </select>
+
+</mapper>

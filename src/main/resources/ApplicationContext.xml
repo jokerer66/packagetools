@@ -16,7 +16,7 @@
             <value>com.mysql.jdbc.Driver</value>
             <!-- <value>org.gjt.mm.mysql.Driver</value>-->        </property>
         <property name="url">
-            <value>jdbc:mysql://localhost:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
+            <value>jdbc:mysql://192.168.2.55:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
             <!--springmybaitis是我的数据库  -->
         </property>
         <property name="username">
@@ -67,5 +67,9 @@
         <property name="mapperInterface" value="dao.ProductDao"></property>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
-
+    <!--catty added for savelink page-->
+    <bean id="saveLinkDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.SaveLinkDao"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
 </beans>
