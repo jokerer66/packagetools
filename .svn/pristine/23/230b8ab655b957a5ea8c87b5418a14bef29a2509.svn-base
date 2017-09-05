@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.IGlobalValueOperation">
+
+    <select id="selectGlobalValues"  resultType="bean.GlobalValue">
+        select * from global_value
+    </select>
+
+
+    <select id="selectGlobalValueByKeyID" parameterType="int" resultType="bean.GlobalValue">
+        select * from global_value where keyid = #{keyid}
+    </select>
+
+
+    <select id="selectGlobalValueByName" parameterType="string" resultType="bean.GlobalValue">
+        select * from global_value where global_value.keyname = #{keyname}
+    </select>
+
+    <!--执行增加操作的SQL语句。id和parameterType分别与IUserOperation接口中的addUser方法的名字和参数类型一致。
+    useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到User的id属性-->
+    <insert id="addGlobalValue" parameterType="bean.GlobalValue"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into global_value(keyid,keyname,keyvalue,keycomment,keyex1,keyex2)
+        values(#{keyid},#{keyname},#{keyvalue},#{keycomment},#{keyex1},#{keyex2})
+    </insert>
+
+    <update id="updateGlobalValue" parameterType="bean.GlobalValue" >
+        update global_value set keyname=#{keyname},keyvalue=#{keyvalue},keycomment=#{keycomment},keyex1=#{keyex1},keyex2=#{keyex2} where keyid=#{keyid}
+    </update>
+
+    <delete id="deleteGlobalValue" parameterType="int">
+        delete from global_value where keyid=#{keyid}
+    </delete>
+</mapper>

@@ -1,0 +1,33 @@
+/*
+ * My97 DatePicker 4.0 Beta4
+ * SITE: dp.my97.net
+ * BLOG: blog.csdn.net/my97/
+ * MAIL: smallcarrot@163.com
+ */
+var $dp,WdatePicker;(function(){var $={
+    /* Config */
+    $wdate:true,
+    $dpPath:"",
+    position:{},
+    lang:"auto",
+    skin:"default",
+    dateFmt:"yyyy-MM-dd",
+    realDateFmt:"yyyy-MM-dd",
+    realTimeFmt:"HH:mm:ss",
+    realFullFmt:"%Date %Time",
+    minDate:"1900-01-01 00:00:00",
+    maxDate:"2099-12-31 23:59:59",
+    startDate:"",
+    alwaysUseStartDate:false,
+    yearOffset:1911,
+    isShowWeek:false,
+    highLineWeekDay:true,
+    isShowClear:true,
+    isShowToday:true,
+    isShowOthers:true,
+    readOnly:false,errDealMode:0,
+    autoPickDate:null,
+    qsEnabled:true,
+
+
+    disabledDates:null,disabledDays:null,onpicking:null,onpicked:null,onclearing:null,oncleared:null,eCont:null,errMsg:"",quickSel:[],has:{}},K=window,_="document",L="documentElement",C="getElementsByTagName",T,A,H,I,S;switch(navigator.appName){case"Microsoft Internet Explorer":H=true;break;case"Opera":S=true;break;default:I=true;break}T=K;while(T.parent[_]!=T[_]&&T.parent[_][C]("frameset").length==0)T=T.parent;A=N();if($.$wdate)M(A+"skin/WdatePicker.css");var R=(T.$dp&&T.$dp.status==3);if(!T.$dp||R){$dp=B({ff:I,ie:H,opera:S,el:null,win:K,status:R?2:1,defMinDate:$.minDate,defMaxDate:$.maxDate,$:function($){return(typeof $=="string")?this.win[_].getElementById($):$},$D:function($,_){return this.$DV(this.$($).value,_)},$DV:function(_,$){if(_!=""){this.dt=$dp.cal.splitDate(_,$dp.cal.dateFmt);if($){for(var A in $){if(this.dt[A]===undefined)this.errMsg="invalid property:"+A;this.dt[A]+=$[A]}if(this.dt.refresh())return this.dt}}return""},attachEvent:G});if(!R)G(T,"onload",function(){WdatePicker()})}else $dp=T.$dp;if(!K[_].docMD){G(K[_],"onmousedown",D);K[_].docMD=true}if(!T[_].docMD){G(T[_],"onmousedown",D);T[_].docMD=true}G(K,"onunload",function(){$dp.dd.style.display="none";T.$dp.status=3});function B(_){T.$dp=T.$dp||{};for(var $ in _)T.$dp[$]=_[$];return T.$dp}function G(A,$,_){if(H)A.attachEvent($,_);else{var B=$.replace(/on/,"");_._ieEmuEventHandler=function($){return _($)};A.addEventListener(B,_._ieEmuEventHandler,false)}}function N(){var _,A,$=document.getElementsByTagName("script");for(var B=0;B<$.length;B++){_=$[B].src.substring(0,$[B].src.toLowerCase().indexOf("wdatepicker.js"));if(_)break}return _}function F(F){var E,C;if(F.substring(0,1)!="/"&&F.indexOf("://")==-1){E=T.location.href;C=location.href;if(E.indexOf("?")>-1)E=E.substring(0,E.indexOf("?"));if(C.indexOf("?")>-1)C=C.substring(0,C.indexOf("?"));var _="",D="",A="",H,G,B="";for(H=0;H<Math.max(E.length,C.length);H++)if(E.charAt(H).toLowerCase()!=C.charAt(H).toLowerCase()){G=H;while(E.charAt(G)!="/"){if(G==0)break;G-=1}_=E.substring(G+1,E.length);_=_.substring(0,_.lastIndexOf("/"));D=C.substring(G+1,C.length);D=D.substring(0,D.lastIndexOf("/"));break}if(_!="")for(H=0;H<_.split("/").length;H++)B+="../";if(D!="")B+=D+"/";F=B+F}$.$dpPath=F}function M(D,$,E){var B=K[_],F=B[C]("HEAD").item(0),A=B.createElement("link");A.href=D;A.rel="stylesheet";A.type="text/css";if($)A.title=$;if(E)A.charset=E;F.appendChild(A)}function O($,_){$.onload=$.onreadystatechange=function(){if(this.readyState&&this.readyState=="loading")return;_()}}function E($){$=$||T;var B=0,A=0;while($!=T){var E=$.parent[_][C]("iframe");for(var G=0;G<E.length;G++){try{if(E[G].contentWindow==$){var F=J(E[G]);B+=F.left;A+=F.top;break}}catch(D){}}$=$.parent}return{"leftM":B,"topM":A}}function J(C){if(H)return C.getBoundingClientRect();else{var E=null,_=C.offsetTop,D=C.offsetLeft,B=C.offsetWidth,A=C.offsetHeight;while(C=C.offsetParent){_+=C.offsetTop;D+=C.offsetLeft;if(C.tagName.toLowerCase()=="body")E=C.ownerDocument.defaultView}var $=P(E);D-=$.left;_-=$.top;B+=D;A+=_;return{"left":D,"top":_,"right":B,"bottom":A}}}function Q($){$=$||T;var A=$[_];A=A[L]&&A[L].clientHeight?A[L]:A.body;return{"width":A.clientWidth,"height":A.clientHeight}}function P($){$=$||T;var C=$[_],B=C[L],A=C.body;C=(B&&B.scrollTop!=null&&(B.scrollTop>A.scrollLeft||B.scrollLeft>A.scrollLeft))?B:A;return{"top":C.scrollTop,"left":C.scrollLeft}}function D(_){src=_?(_.srcElement||_.target):null;if($dp&&$dp.dd&&$dp.dd.style.display=="block"&&src!=$dp.el){var A=$dp.el,B=$dp.cal,$=$dp.el[$dp.elProp];if($){$dp.$w.hideSel();if($!=""&&!$dp.readOnly)B.date.loadFromDate(B.splitDate($,B.dateFmt));if($==""||(B.isDate(B.date)&&B.isTime(B.date)&&B.checkValid(B.date))){B.mark(true);if($!="")B.update();else A.setAttribute("realValue","");$dp.dd.style.display="none"}else B.mark(false)}else $dp.dd.style.display="none"}}WdatePicker=function(R){if(H&&T[_].readyState!="complete")return;$dp.win=K;R=R||{};if(!$dp.dd||R.eCont){if(R.eCont){R.eCont=$dp.$(R.eCont);R.autoPickDate=true;R.qsEnabled=false}R.el={innerHTML:""}}else{if($dp.status!=2)return;var N,M=C();if(M){N=M.srcElement||M.target;M.cancelBubble=true}R.el=$dp.$(R.el||N);if(!R.el||R.el&&R.el.disabled||(R.el==$dp.el&&$dp.dd.style.display!="none"&&$dp.dd.style.left!="-1970px"))return}for(var L in $)if(L.substring(0,1)!="$")$dp[L]=$[L];for(L in R)if($dp[L]===undefined)$dp.errMsg="invalid property:"+L;else $dp[L]=R[L];$dp.elProp=$dp.el&&$dp.el.nodeName=="INPUT"?"value":"innerHTML";if($dp.el[$dp.elProp]==null)return;if($dp.lang=="auto")$dp.lang=H?navigator.browserLanguage.toLowerCase():navigator.language.toLowerCase();if(!$dp.dd||$dp.eCont||($dp.lang&&$dp.realLang&&$dp.realLang.name!=$dp.lang)){if($dp.dd)T[_].body.removeChild($dp.dd);if($.$dpPath=="")F(A);var D="<iframe src=\""+$.$dpPath+"My97DatePicker.htm\" frameborder=\"0\" border=\"0\" scrolling=\"no\"></iframe>";if($dp.eCont)$dp.eCont.innerHTML=D;else{$dp.dd=T[_].createElement("DIV");$dp.dd.style.cssText="position:absolute;z-index:19700";$dp.dd.innerHTML=D;try{T[_].body.appendChild($dp.dd)}catch(B){}var S=$dp.dd.childNodes[0];O(S,function(){$dp.status=2});if(!$dp.realLang){$dp.dd.style.top=$dp.dd.style.left="-1970px";return}else{$dp.dd.style.display="block";O(S,G)}}}else if($dp.cal){$dp.dd.style.display="block";$dp.cal.init();G()}function G(){var F=$dp.position.left,B=$dp.position.top,G=J($dp.el),$=E(K),C=Q(T),A=P(T),D=$dp.dd.offsetHeight,_=$dp.dd.offsetWidth;if(isNaN(B)){if(B=="above"||(B!="under"&&(($.topM+G.bottom+D>C.height)&&($.topM+G.top-D>0))))B=A.top+$.topM+G.top-D-3;else B=A.top+$.topM+G.bottom;B+=H?-1:1}else B+=A.top+$.topM;if(isNaN(F))F=A.left+Math.min($.leftM+G.left,C.width-_-5)-(H?2:0);else F+=A.left+$.leftM;$dp.dd.style.top=B+"px";$dp.dd.style.left=F+"px"}function C(){if(I){func=C.caller;while(func!=null){var $=func.arguments[0];if($&&($+"").indexOf("Event")>=0)return $;func=func.caller}return null}return event}}})()

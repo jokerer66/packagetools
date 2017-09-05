@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <mappers>
+        <mapper resource="mapper/UserDao.xml"/>
+        <mapper resource="mapper/SvnInfo.xml"/>
+        <mapper resource="mapper/Config.xml"/>
+        <mapper resource="mapper/GlobalValue.xml"/>
+        <mapper resource="mapper/IosLog.xml"/>
+        <mapper resource="mapper/AndroidLog.xml"/>
+        <mapper resource="mapper/Project.xml"/>
+        <mapper resource="mapper/Product.xml"/>
+        <mapper resource="mapper/Globalset.xml"/>
+        <mapper resource="mapper/SaveLink.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ProjectDao">
+
+    <select id="getallproject" resultType="bean.Project">
+        select * from projectinfo ORDER BY projectid
+    </select>
+
+    <select id="getallproductname" resultType="string">
+            select productname from projectinfo GROUP BY productname
+    </select>
+
+    <select id="getProjectByname" parameterType="string" resultType="bean.Project">
+        SELECT * FROM projectinfo WHERE projectname=#{projectname}
+    </select>
+
+    <select id="getProjectByProductnameAndPlatform" parameterType="string" resultType="bean.Project">
+        SELECT * FROM projectinfo WHERE productname=#{0} and platform=#{1}
+    </select>
+
+    <select id="getallproductnameByPlatform" parameterType="string" resultType="string">
+        SELECT distinct productname FROM projectinfo WHERE platform=#{platform}
+    </select>
+
+    <select id="isprojectexistWithoutId" parameterType="bean.Project" resultType="bean.Project">
+        SELECT * FROM projectinfo WHERE projectname=#{projectname} and projectid != #{projectid}
+    </select>
+
+    <insert id="addproject" parameterType="bean.Project" useGeneratedKeys="true" keyProperty="projectid">
+        INSERT INTO projectinfo (projectname,productname,iosbundleid,onoff,Platform,exe_before_context,exe_on_context,exe_after_context,iosbuildtype,proversionprofile,iosapppath)
+        VALUES (#{projectname},#{productname},#{iosbundleid},#{onoff},#{Platform},#{exe_before_context},#{exe_on_context},#{exe_after_context},#{iosbuildtype},#{proversionprofile},#{iosapppath}
+        )
+    </insert>
+
+    <update id="updateProject" parameterType="bean.Project">
+        UPDATE projectinfo SET  projectname=#{projectname},productname=#{productname},iosbundleid=#{iosbundleid},onoff=#{onoff},Platform=#{Platform},exe_before_context=#{exe_before_context},exe_on_context=#{exe_on_context},
+        exe_after_context=#{exe_after_context},iosbuildtype=#{iosbuildtype},proversionprofile=#{proversionprofile},iosapppath=#{iosapppath}
+         WHERE projectid=#{projectid}
+    </update>
+
+    <delete id="deleteproject" parameterType="int">
+        DELETE FROM projectinfo WHERE projectid=#{projectid}
+    </delete>
+
+</mapper>

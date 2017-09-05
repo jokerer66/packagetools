@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.IAndroidLogOperation">
+
+    <select id="selectAndroidLogs" resultType="bean.AndroidLog">
+        select * from androidlog order by pack_time
+    </select>
+
+    <select id="selectAndroidLogsNum" resultType="int">
+        select count(*) from androidlog
+    </select>
+
+    <select id="selectAndroidLogFilenames" resultType="bean.AndroidLog">
+        select * from androidLog where file_name like #{file_name_section} order by id DESC limit #{start_flag},#{end_flag}
+    </select>
+
+    <select id="selectAndroidLogFilenameNums" resultType="int" parameterType="String">
+        select count(*) from androidLog where file_name like #{file_name_section}
+    </select>
+
+    <select id="selectAndroidLogByProductName" parameterType="String" resultType="String">
+        select file_name from androidlog where product_name = #{product_name} order by pack_time
+    </select>
+
+    <select id="selectAndroidLogByPEM" resultType="String">
+        select file_name from androidlog where product_name=#{product_name} and edition=#{edition} and mode=#{mode} order by pack_time
+    </select>
+
+    <select id="selectAndroidLogByID" parameterType="int" resultType="bean.AndroidLog">
+        select * from androidlog where id = #{id}
+    </select>
+
+    <select id="selectAndroidLogsByMode" parameterType="string" resultType="bean.AndroidLog">
+        select * from androidlog where AndroidLog.mode = #{mode}
+    </select>
+
+    <select id="selectAndroidLogByName" parameterType="string" resultType="bean.AndroidLog">
+        select * from androidlog where AndroidLog.packname = #{packname}
+    </select>
+
+    <!--下一页，上一页的功能-->
+    <select id="selectAndroidLogSection" resultType="bean.AndroidLog">
+        select * from androidlog order by id DESC limit #{start_flag},#{end_flag}
+    </select>
+
+    <!--下一页，上一页的功能-->
+    <select id="selectFilenamesSection" resultType="string">
+        select file_name from androidlog order by id DESC limit #{start_flag},#{end_flag}
+    </select>
+
+ <insert id="addAndroidLog" parameterType="bean.AndroidLog"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into androidlog(packname,main_version,svn_version,file_name,store_root_path,store_path,svn_url,product_name,edition,platform,mode,on_off,ip,nums,pack_time,isstore,viewflag,exone,extwo,exthree)
+        values(#{packname},#{main_version},#{svn_version},#{file_name},#{store_root_path},#{store_path},#{svn_url},#{product_name},#{edition},#{platform},#{mode},#{on_off},#{ip},#{nums},#{pack_time},#{isstore},#{viewflag},#{exone},#{extwo},#{exthree})
+    </insert>
+
+    <update id="updateAndroidLog" parameterType="bean.AndroidLog" >
+       update androidlog set packname=#{packname},main_version=#{main_version},svn_version=#{svn_version},file_name=#{file_name},store_root_path=#{store_root_path},store_path=#{store_path},svn_url=#{svn_url},
+        product_name=#{product_name},edition=#{edition},platform=#{platform},mode=#{mode},on_off=#{on_off},ip=#{ip},nums=#{nums},pack_time=#{pack_time},isstore=#{isstore},viewflag=#{viewflag},exone=#{exone},extwo=#{extwo},exthree=#{exthree}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteAndroidLog" parameterType="string">
+        delete from androidlog where packname=#{packname}
+    </delete>
+
+    <select id="getandroidreadyinfo" resultType="bean.AndroidLog">
+        select * from androidlog where packname like '%ready%' or packname like '%googleplay%' ORDER BY id DESC
+    </select>
+    <select id="getLastPackinfo" parameterType="string" resultType="bean.AndroidLog">
+        SELECT * from androidlog where svn_url =#{svn_url} ORDER BY id DESC LIMIT 1
+    </select>
+</mapper>
