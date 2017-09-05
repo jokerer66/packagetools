@@ -10,14 +10,10 @@
             <!-- <value>org.gjt.mm.mysql.Driver</value>-->
         </property>
         <property name="url">
-<<<<<<< HEAD
-            <value>jdbc:mysql://192.168.2.55:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
             <!--springmybaitis是我的数据库  -->
-=======
-            <!--<value>jdbc:mysql://localhost:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>-->
+            <value>jdbc:mysql://localhost:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
             <!--springmybaitis是我的数据库 -->
-            <value>jdbc:mysql://192.168.2.55:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
->>>>>>> origin/master
+            <!--<value>jdbc:mysql://192.168.2.55:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>-->
         </property>
         <property name="username">
             <value>root</value>
@@ -72,8 +68,5 @@
         <property name="mapperInterface" value="dao.SaveLinkDao"></property>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 </beans>

@@ -17,7 +17,6 @@ public class GlobalSet {
     private String autopackstarthour;
     private String autopackstartminute;
     private String autopackperiod;
-    private String httprequest;
 
 
 
@@ -124,13 +123,4 @@ public class GlobalSet {
     public void setAutopackperiod(String autopackperiod) {
         this.autopackperiod = autopackperiod;
     }
-
-    public String getHttprequest() {
-        return httprequest;
-    }
-
-    public void setHttprequest(String httprequest) {
-        this.httprequest = httprequest;
-    }
 }
-

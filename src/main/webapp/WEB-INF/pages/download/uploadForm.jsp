@@ -91,7 +91,7 @@
         </tr>
         <tr height="200px">
 
-          <td style="font-size: 20px;text-align:left;">选择下载到本地的googleplay apk文件:&nbsp;
+          <td style="font-size: 20px;text-align:left;">选择下载到本地googleplay apk文件:&nbsp;
             <input style="font-size: 20px;" type="file" name="file"/>
         </td>
           <td><input style="width:200px;height:150px;text-align:center;" type="submit" value="开始上传apk到服务器"

@@ -133,24 +133,8 @@
             var js_autopackstarthour = document.getElementById('text_autopackstarthour').value;
             var js_autopackstartminute = document.getElementById('text_autopackstartminute').value;
             var js_autopackperiod = document.getElementById('text_autopackperiod').value;
-            var js_httprequest = document.getElementById('text_httprequest').value;
-            js_httprequest = js_httprequest.replace("&","\&");
             if (confirm('确定保存?')) {
                 $.post("${ctx}/globalset/saveglobalset?js_sdkinfo=" + js_sdkinfo
-<<<<<<< HEAD
-                        + "&js_code_path=" + js_code_path +"&js_android_pack_path=" + js_android_pack_path+"&js_ios_pack_path=" + js_ios_pack_path
-                        + "&js_tomcat_path=" + js_tomcat_path + "&js_downipa_filename=" + js_downipa_filename + "&js_svnusername=" + js_svnusername + "&js_svnpassword="+ js_svnpassword+"&js_hostip="+js_hostip
-                        + "&js_autopackstarthour=" +js_autopackstarthour +"&js_autopackstartminute=" + js_autopackstartminute+ "&js_autopackperiod=" + js_autopackperiod +"&js_httprequest="+js_httprequest
-                        , function (data) {
-                            if(data == 1){
-                                alert("修改成功");location.reload();
-                            }else{
-                                alert("修改失败");
-                            }
-
-                        })
-
-=======
                     + "&js_code_path=" + js_code_path +"&js_android_pack_path=" + js_android_pack_path+"&js_ios_pack_path=" + js_ios_pack_path
                     + "&js_tomcat_path=" + js_tomcat_path + "&js_downipa_filename=" + js_downipa_filename + "&js_svnusername=" + js_svnusername + "&js_svnpassword="+ js_svnpassword+"&js_hostip="+js_hostip
                     + "&js_autopackstarthour=" +js_autopackstarthour +"&js_autopackstartminute=" + js_autopackstartminute+ "&js_autopackperiod=" + js_autopackperiod
@@ -161,7 +145,6 @@
                             alert("修改失败");
                         }
                     })
->>>>>>> origin/master
             }
         }
         function reset_autopacktimer(){
@@ -177,21 +160,6 @@
                             alert("重置失败");
                         }
                     })
-            }
-        }
-
-        function sendHttpRequest(){
-            var js_httprequest = document.getElementById('text_httprequest').value;
-            if (confirm('确定发送?')) {
-                $.post("${ctx}/globalset/sendhttprequest?js_httprequest=" +js_httprequest
-                        , function (data) {
-                            if(data == 1){
-                                alert("发送成功");
-                            }else{
-                                alert("发送失败");
-                            }
-
-                        })
             }
         }
     </script>
@@ -276,15 +244,9 @@
                 <td><p class="text_yellow"></p></td>
             </tr>
             <tr>
-                <td><p class="text_yellow">http请求<br></p></td>
-                <td><input class="text2" type="text" id="text_httprequest" value="${globalset.httprequest}"></td>
-                <td><p class="text_yellow"></p></td>
-            </tr>
-            <tr>
                 <%--<td><input class="but_style" type="button" onclick="search_project()"  value="通过projectname查询"></td>--%>
                 <td><input class="but_style" type="button" onclick="save_data_globalset()"  value="保存"></td>
                 <td><input class="but_style" type="button" onclick="reset_autopacktimer()" value="重置自动打包定时器"></td>
-                    <td><input class="but_style" type="button" onclick="sendHttpRequest()" value="立即发送http请求"></td>
             </tr>
 
         </table>
