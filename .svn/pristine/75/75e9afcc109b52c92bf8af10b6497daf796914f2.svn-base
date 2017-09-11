@@ -1,0 +1,529 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.instanza.package</groupId>
+  <artifactId>packagetools</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>packagetools Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <spring.version>4.1.4.RELEASE</spring.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.databene</groupId>
+      <artifactId>feed4junit</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-spring</artifactId>
+      <version>3.4.2</version>
+    </dependency>
+    <!--junit test-->
+
+    <!-- Spring mybatis package plugins -->
+    <dependency>
+      <groupId>aopalliance</groupId>
+      <artifactId>aopalliance</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.jettison</groupId>
+      <artifactId>jettison</artifactId>
+      <version>1.3.7</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.2.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.35</version>
+    </dependency>
+    <!-- Spring 3 dependencies -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-expression</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>xpp3</groupId>
+      <artifactId>xpp3_min</artifactId>
+      <version>1.1.4c</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.8</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>apache-log4j-extras</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <!--file upload-->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.3.2</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-antlr -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-antlr</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-apache-bcel -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-apache-bcel</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-apache-bsf -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-apache-bsf</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-apache-log4j -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-apache-log4j</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-apache-oro -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-apache-oro</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-apache-regexp -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-apache-regexp</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-apache-xalan2 -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-apache-xalan2</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-commons-logging -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-commons-logging</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-commons-net -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-commons-net</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-jai -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-jai</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-javamail -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-javamail</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-jdepend -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-jdepend</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-jmf -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-jmf</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-jsch -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-jsch</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-junit -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-junit</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-junit4 -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-junit4</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-launcher -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-launcher</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-netrexx -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-netrexx</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-swing -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-swing</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant-testutil -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-testutil</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ant/ant -->
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.antlr/antlr-runtime -->
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr-runtime</artifactId>
+      <version>3.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.6</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/fluent-hc -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>fluent-hc</artifactId>
+      <version>4.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient-cache -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient-cache</artifactId>
+      <version>4.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.4.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpmime</artifactId>
+      <version>4.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>4.4.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna-platform -->
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna-platform</artifactId>
+      <version>4.4.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jcraft/jsch.agentproxy.connector-factory -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch.agentproxy.connector-factory</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jcraft/jsch.agentproxy.core -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch.agentproxy.core</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jcraft/jsch.agentproxy.pageant -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch.agentproxy.pageant</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jcraft/jsch.agentproxy.sshagent -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch.agentproxy.sshagent</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jcraft/jsch.agentproxy.svnkit-trilead-ssh2 -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch.agentproxy.svnkit-trilead-ssh2</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jcraft/jsch.agentproxy.usocket-jna -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch.agentproxy.usocket-jna</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.jcraft/jsch.agentproxy.usocket-nc -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch.agentproxy.usocket-nc</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>6.0.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/de.regnis.q.sequence/sequence-library -->
+    <dependency>
+      <groupId>de.regnis.q.sequence</groupId>
+      <artifactId>sequence-library</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.tmatesoft.sqljet/sqljet -->
+    <dependency>
+      <groupId>org.tmatesoft.sqljet</groupId>
+      <artifactId>sqljet</artifactId>
+      <version>1.1.10</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.tmatesoft.svnkit/svnkit -->
+    <dependency>
+      <groupId>org.tmatesoft.svnkit</groupId>
+      <artifactId>svnkit</artifactId>
+      <version>1.8.14</version>
+      <!--<version>1.8.4</version>-->
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.tmatesoft.svnkit/svnkit-cli -->
+    <dependency>
+      <groupId>org.tmatesoft.svnkit</groupId>
+      <artifactId>svnkit-cli</artifactId>
+      <version>1.8.14</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.tmatesoft.svnkit/svnkit-javahl16 -->
+    <dependency>
+      <groupId>org.tmatesoft.svnkit</groupId>
+      <artifactId>svnkit-javahl16</artifactId>
+      <version>1.8.14</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.trilead/trilead-ssh2 -->
+    <dependency>
+      <groupId>com.trilead</groupId>
+      <artifactId>trilead-ssh2</artifactId>
+      <version>1.0.0-build219</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.viskan/svntask -->
+    <dependency>
+      <groupId>com.viskan</groupId>
+      <artifactId>svntask</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.tmatesoft.svnkit/trilead-ssh2 &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.tmatesoft.svnkit</groupId>-->
+    <!--<artifactId>trilead-ssh2</artifactId>-->
+    <!--<version>1.0.0-build214</version>-->
+    <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.tigris.subversion/svnclientadapter &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.tigris.subversion</groupId>-->
+    <!--<artifactId>svnclientadapter</artifactId>-->
+    <!--<version>0.9.100</version>-->
+    <!--</dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/org.apache.subversion/svn-javahl-api -->
+    <!--<dependency>-->
+    <!--<groupId>org.apache.subversion</groupId>-->
+    <!--<artifactId>svn-javahl-api</artifactId>-->
+    <!--<version>1.9.3</version>-->
+    <!--</dependency>-->
+  </dependencies>
+
+  <build>
+    <finalName>packagetools</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <encoding>UTF-8</encoding>
+          <fork>true</fork>
+          <meminitial>512m</meminitial>
+          <maxmem>1048m</maxmem>
+
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.8</version>
+        <configuration>
+          <includes>
+            <!--包含所有后缀为Test.jave的类 -->
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

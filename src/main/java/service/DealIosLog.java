@@ -26,23 +26,22 @@ public class DealIosLog {
         }
         return dealIosLog;
     }
-
     //方法0：构造函数，初始化配置文件以及接口
-    public DealIosLog() {
+    public DealIosLog(){
 
         ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
         iosLogOperation = (IIosLogOperation) ctx.getBean("iosLogDao");
     }
 
     //方法1：获取iosLog表所有数据
-    public List<IosLog> getIosLogs() {
+    public List<IosLog> getIosLogs(){
 
         List<IosLog> iosLogs = iosLogOperation.selectIosLogs();
 
         return iosLogs;
     }
 
-    public int getIosLogNums() {
+    public int getIosLogNums(){
 
         int nums = iosLogOperation.selectIosLogNums();
 
@@ -50,7 +49,7 @@ public class DealIosLog {
     }
 
     //方法2：通过产品名称获取文件名
-    public List<String> getNamesByProductName(String product_name) {
+    public List<String> getNamesByProductName(String product_name){
 
         List<String> filenames = iosLogOperation.selectIosLogByProductName(product_name);
 
@@ -59,7 +58,7 @@ public class DealIosLog {
 
 
     //模糊查询获取androidlog中相似file_name的数据总数
-    public List<IosLog> getIosLogFilenamesSection(int start_flag, int end_flag, String file_name_section) {
+    public List<IosLog> getIosLogFilenamesSection(int start_flag, int end_flag, String file_name_section){
 
         List<IosLog> iosLogs = iosLogOperation.selectIosLogFilenames(start_flag, end_flag, "%" + file_name_section + "%");
 
@@ -67,7 +66,7 @@ public class DealIosLog {
     }
 
     //模糊查询获取androidlog中相似file_name的数据总集合
-    public int getIosLogFilenameNums(String file_name_section) {
+    public int getIosLogFilenameNums(String file_name_section){
 
         int filenames_num = iosLogOperation.selectIosLogFilenameNums("%" + file_name_section + "%");
 
@@ -75,7 +74,7 @@ public class DealIosLog {
     }
 
     //方法3：通过产品名称、主干/分支、debug/enterprise来获取filename
-    public List<String> getNamesByPEM(String product_name, String edition, String mode) {
+    public List<String> getNamesByPEM(String product_name,String edition,String mode){
 
         List<String> filenames = iosLogOperation.selectIosLogByPEM(product_name, edition, mode);
 
@@ -91,7 +90,7 @@ public class DealIosLog {
     }
 
     //方法5：通过debug/enterprise类型返回所有同类型数据
-    public List<IosLog> getIosLogsByMode(String mode) {
+    public List<IosLog> getIosLogsByMode(String mode){
 
         List<IosLog> iosLogs = iosLogOperation.selectIosLogsByMode(mode);
 
@@ -107,19 +106,19 @@ public class DealIosLog {
     }
 
     //方法7：分段查询packname
-    public List<IosLog> getIosLogSection(int start_flag, int end_flag) {
+    public List<IosLog> getIosLogSection(int start_flag, int end_flag){
 
-        List<IosLog> ioslogs;
+        List<IosLog> ioslogs ;
 
-        ioslogs = iosLogOperation.selectIosLogSection(start_flag, end_flag);
+        ioslogs = iosLogOperation.selectIosLogSection(start_flag,end_flag);
 
         return ioslogs;
     }
 
     //方法8：分段查询filename
-    public List<IosLog> getFilenamesSection(int start_flag, int end_flag) {
+    public List<IosLog> getFilenamesSection(int start_flag, int end_flag){
 
-        List<IosLog> iosLogs;
+        List<IosLog> iosLogs ;
 
         iosLogs = iosLogOperation.selectFilenamesSection(start_flag, end_flag);
 
@@ -127,7 +126,7 @@ public class DealIosLog {
     }
 
     //方法8：添加ioslog信息
-    public String addIosLog(IosLog iosLog) {
+    public String addIosLog(IosLog iosLog){
 
         String flag_add_iosLog = "0";
 
@@ -157,7 +156,7 @@ public class DealIosLog {
         return iosLogOperation.getiosreadyinfo();
     }
 
-    public IosLog getLastPackinfo(String svn_url) {
+    public IosLog getLastPackinfo(String svn_url){
         return iosLogOperation.getLastPackinfo(svn_url);
     }
 

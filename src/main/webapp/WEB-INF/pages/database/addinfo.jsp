@@ -11,6 +11,7 @@
     <title>Add Package Info Page</title>
 
     <style>
+
         .table-b table {
             border: 1px solid #F00
         }
@@ -30,6 +31,7 @@
             border-style: solid;
             border-color: #08575B;
             background-color: #7F4614;
+
         }
 
         table.gridtable td {
@@ -83,86 +85,125 @@
     </style>
 
     <script language="JavaScript">
+
         //判断输入的各项内容是否合法的正则表达式,pattern的值前后需要//包起来
         function isTrueName(patrn, s) {
             if (!patrn.exec(s)) return false
             return true
         }
+
         //检查用户名是否是否在数据库中已存在，如果存在则更新，如果不存在则新增
         function button_checkrepeat() {
+
             var packname = document.getElementById('text_packname').value;
+
             if (packname == "") {
+
                 alert("请输入打包项目名称");
+
             } else {
+
                 $.post("${ctx}/addinfo/check_repeat?packname=" + packname, function (data) {
+
                     if (data == "0") {
+
                         alert(packname + "不存在数据库中");
                     } else {
+
                         alert(packname + "已经存在数据库中");
                     }
+
                 })
             }
         }
         //检查输入的各项是否合法
         function button_checklogic() {
+
+
             var flag = 0;
             //判断packname取值是否正确
             if (!isTrueName(/^[a-zA-Z0-9\.-]{10,40}$/, document.getElementById('text_packname').value)) {
+
                 alert("打包项目名称输入不合法");
                 flag = 1;
+
+
             } else if (!isTrueName(/^https./, document.getElementById('text_svnurl').value)) {
                 alert("svn地址不合法，请以https://开头");
                 flag = 1;
+
             } else if (!isTrueName(/[0-9][.][0-9]{1,3}[.][0-9]{1,3}/, document.getElementById('text_main_version').value)) {
+
                 alert("主版本号不合法");
                 flag = 1;
             }
+
+
             return flag;
+
         }
         //查询当前packname的数据
         function button_search() {
+
             var packname = document.getElementById('text_packname').value;
+
             if (packname == "") {
+
                 alert("请输入打包项目名称");
+
             } else {
+
                 $.post("${ctx}/addinfo/search_svninfo?packname=" + packname, function (data) {
+
                     if (data == "0") {
                         alert("打包项目名称在数据库svninfo表或config表中不存在");
                     } else {
+
                         var infos = data.split("|");
+
                         document.getElementById('text_pid').innerHTML = infos[0];
                         document.getElementById('text_packname').value = infos[1];
                         document.getElementById('text_svnurl').value = infos[2];
                         document.getElementById('text_main_version').value = infos[3];
                         document.getElementById('select_projectinfo').value = infos[4];
-                        if (infos[5] == "1") {
+                        if(infos[5] == "1"){
                             document.getElementById('text_isautopack').checked = true;
-                        } else if (infos[5] == "0") {
+                        }else if(infos[5] == "0"){
                             document.getElementById('text_isautopack').checked = false;
                         }
+
                     }
+
+
                 })
+
             }
         }
         //保存数据到数据库
         function save_data() {
+
             var js_projectname = document.getElementById('select_projectinfo').value;
             var js_pid = document.getElementById('text_pid').innerText;
             var js_packname = document.getElementById('text_packname').value;
             var js_svnurl = document.getElementById('text_svnurl').value;
             var js_main_version = document.getElementById('text_main_version').value;
             var js_isautopack = 0;
-            if (document.getElementById('text_isautopack').checked) {
+            if(document.getElementById('text_isautopack').checked){
                 js_isautopack = 1;
-            } else {
+            }else{
                 js_isautopack = 0;
             }
             if (confirm('确定保存?')) {
-                var flag = button_checklogic();
-                if (flag == 0) {
-                    if (js_packname != null || js_svnurl != null) {
-                        $.post("${ctx}/addinfo/saveInfoquick?ctr_pid=" + js_pid + "&ctr_projectname=" + js_projectname + "&ctr_packname=" + js_packname + "&ctr_svnurl=" + js_svnurl + "&ctr_main_version=" + js_main_version + "&ctr_isautopack=" + js_isautopack
+
+               var flag = button_checklogic();
+
+
+                if(flag == 0){
+
+                if (js_packname != null || js_svnurl != null) {
+                    $.post("${ctx}/addinfo/saveInfoquick?ctr_pid=" + js_pid +"&ctr_projectname="+js_projectname+ "&ctr_packname=" + js_packname + "&ctr_svnurl=" + js_svnurl + "&ctr_main_version=" + js_main_version+"&ctr_isautopack="+js_isautopack
                             , function (data) {
+
                                 if (data == "0") {
                                     alert("新增失败");
                                 } else if (data == "1") {
@@ -177,21 +218,33 @@
                                     alert("保存数据失败！");
                                     location.reload();
                                 }
+
                             });
-                    } else {
-                        alert('打包项目名称、svn路径为必填项');
-                        location.reload();
-                    }
+
+                } else {
+
+                    alert('打包项目名称、svn路径为必填项');
+                    location.reload();
+                }
                 }//校验失败什么都不做
             }
+
+
         }
+
         function delete_database() {
+
             var packname = document.getElementById('text_packname').value;
+
             if (packname == "") {
+
                 alert("请输入打包项目名称");
+
             } else {
+
                 if (confirm('确定删除当前打包工程信息?')) {
                     $.post("${ctx}/addinfo/delete_svninfo_config?packname=" + packname, function (data) {
+
                         if (data == "0") {
                             alert("删除成功");
                             location.reload();
@@ -200,14 +253,18 @@
                             location.reload();
                         }
                     });
-                } else {
+                }else{
                     location.reload();
                 }
+
             }
         }
+
         function delete_dsym() {
+
             if (confirm('确定删除七天前的sdym文件?')) {
                 $.post("${ctx}/addinfo/delete_dsym", function (data) {
+
                     if (data == "0") {
                         alert("删除成功");
                         location.reload();
@@ -216,17 +273,21 @@
                         location.reload();
                     }
                 });
-            } else {
+            }else{
                 location.reload();
             }
+
         }
-        function changeproject(projectname) {
-            if (projectname.indexOf("ios") != -1) {
+
+        function changeproject(projectname){
+            if(projectname.indexOf("ios") != -1){
                 button_ios();
-            } else if (projectname.indexOf("android") != -1) {
+            }else if(projectname.indexOf("android") != -1){
                 button_android();
             }
         }
+
+
     </script>
 
 </head>
@@ -256,7 +317,7 @@
                 <td>
                     <select class="text2" onChange="changeproject(this.value);" id="select_projectinfo">
                         <c:forEach var="projectmodel" items="${projectlist}" varStatus="id">
-                            <option value="${projectmodel.projectname}">${projectmodel.projectname}</option>
+                        <option value="${projectmodel.projectname}">${projectmodel.projectname}</option>
                         </c:forEach>
                     </select>
                 </td>
@@ -294,39 +355,36 @@
                 <td><p class="text_yellow"></p></td>
             </tr>
             <%--<tr>--%>
-            <%--<td><p class="text_yellow">ipa包最终存储路径:</p></td>--%>
-            <%--<td><input class="text2" type="text" id="text_store_root_path" value="/Users/${system_log_user_name}/Desktop/ios_build">--%>
-            <%--</td>--%>
-            <%--<td><p class="text_yellow">保持默认即可</p></td>--%>
+                <%--<td><p class="text_yellow">ipa包最终存储路径:</p></td>--%>
+                <%--<td><input class="text2" type="text" id="text_store_root_path" value="/Users/${system_log_user_name}/Desktop/ios_build">--%>
+                <%--</td>--%>
+                <%--<td><p class="text_yellow">保持默认即可</p></td>--%>
             <%--</tr>--%>
 
 
             <!--ios企业版的地址以及需要执行的脚本的处理,可以置空-->
             <%--<tr>--%>
-            <%--<td><p class="text_yellow">企业版上传脚本路径:</p></td>--%>
-            <%--<td><input class="text2" type="text" id="text_enterprise_path" value="">--%>
-            <%--</td>--%>
-            <%--<td><p class="text_yellow">企业版上传的根路径,如果mode=debug或不需要传到其他服务器此处可置空处理。如果有其他存放路径请输入位置，如:/Users/${system_log_user_name}/Desktop/ios_build</p></td>--%>
+                <%--<td><p class="text_yellow">企业版上传脚本路径:</p></td>--%>
+                <%--<td><input class="text2" type="text" id="text_enterprise_path" value="">--%>
+                <%--</td>--%>
+                <%--<td><p class="text_yellow">企业版上传的根路径,如果mode=debug或不需要传到其他服务器此处可置空处理。如果有其他存放路径请输入位置，如:/Users/${system_log_user_name}/Desktop/ios_build</p></td>--%>
             <%--</tr>--%>
             <%--<tr>--%>
-            <%--<td><p class="text_yellow">企业版上传脚本名称:</p></td>--%>
-            <%--<td><input class="text2" type="text" id="text_enterprise_name" value="">--%>
-            <%--</td>--%>
-            <%--<td><p class="text_yellow">企业版上传的脚本名称,如果mode=debug或不需要上传到初136以外的其他服务器，此处可置空处理.如果需要启用脚本请以sh结尾，如:upload_enterprise_ios.sh</p></td>--%>
+                <%--<td><p class="text_yellow">企业版上传脚本名称:</p></td>--%>
+                <%--<td><input class="text2" type="text" id="text_enterprise_name" value="">--%>
+                <%--</td>--%>
+                <%--<td><p class="text_yellow">企业版上传的脚本名称,如果mode=debug或不需要上传到初136以外的其他服务器，此处可置空处理.如果需要启用脚本请以sh结尾，如:upload_enterprise_ios.sh</p></td>--%>
             <%--</tr>--%>
 
             <tr>
-                <td><input class="but_style" type="button" onclick="button_search()" id="button_search"
-                           value="通过packname查询"></td>
+                <td><input class="but_style" type="button" onclick="button_search()" id="button_search" value="通过packname查询"></td>
                 <td><input class="but_style" type="button" onclick="save_data()" id="button_submit" value="保存"></td>
 
             </tr>
 
             <tr>
-                <td><input class="but_style" type="button" onclick="delete_database()" id="button_delete_database"
-                           value="删除该条打包项目"></td>
-                <td><input class="but_style" type="button" onclick="delete_dsym()" id="button_delete_dsym"
-                           value="删除七天前的dSYM文件"></td>
+                <td><input class="but_style" type="button" onclick="delete_database()" id="button_delete_database" value="删除该条打包项目"></td>
+                <td><input class="but_style" type="button" onclick="delete_dsym()" id="button_delete_dsym" value="删除七天前的dSYM文件"></td>
             </tr>
 
         </table>

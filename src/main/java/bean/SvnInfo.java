@@ -21,6 +21,7 @@ public class SvnInfo {
     private String projectname;
 
 
+
     public int getId() {
         return id;
     }
@@ -110,21 +111,13 @@ public class SvnInfo {
         this.extwo = extwo;
     }
 
-    public String getSort() {
-        return sort;
-    }
+    public String getSort() { return sort; }
 
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
+    public void setSort(String sort) { this.sort = sort; }
 
-    public String getExthree() {
-        return exthree;
-    }
+    public String getExthree() { return exthree; }
 
-    public void setExthree(String exthree) {
-        this.exthree = exthree;
-    }
+    public void setExthree(String exthree) { this.exthree = exthree; }
 
     public String getProjectname() {
         return projectname;

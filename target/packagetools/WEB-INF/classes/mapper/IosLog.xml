@@ -43,7 +43,7 @@
 
     <!--下一页，上一页的功能-->
     <select id="selectIosLogSection" resultType="bean.IosLog">
-        select * from ioslog where viewflag='1' order by id DESC limit #{start_flag},#{end_flag}
+            select * from ioslog where viewflag='1' order by id DESC limit #{start_flag},#{end_flag}
     </select>
 
     <!--下一页，上一页的功能-->

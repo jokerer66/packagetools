@@ -14,7 +14,7 @@
          SELECT * FROM savelink WHERE link = #{link}
     </select>
 
-    <!--方法3:通过link查询数量，resultType与实现方法的返回数据类型一直-->
+    <!--方法3:通过link查询数量-->
     <select id="selectNumsBylink" parameterType="string" resultType="int">
         SELECT count(*) FROM savelink WHERE link = #{link}
     </select>

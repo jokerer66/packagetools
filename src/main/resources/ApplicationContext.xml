@@ -7,8 +7,7 @@
     <bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName">
             <value>com.mysql.jdbc.Driver</value>
-            <!-- <value>org.gjt.mm.mysql.Driver</value>-->
-        </property>
+            <!-- <value>org.gjt.mm.mysql.Driver</value>-->        </property>
         <property name="url">
             <!--springmybaitis是我的数据库  -->
             <value>jdbc:mysql://localhost:3306/packagetool?useUnicode=true&amp;characterEncoding=UTF-8</value>
@@ -24,7 +23,7 @@
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="jdbcDataSource"/>
+        <property name="dataSource" ref="jdbcDataSource" />
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
     </bean>
     <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -68,5 +67,4 @@
         <property name="mapperInterface" value="dao.SaveLinkDao"></property>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
-
 </beans>

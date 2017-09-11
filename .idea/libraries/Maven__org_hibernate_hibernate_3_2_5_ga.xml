@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.hibernate:hibernate:3.2.5.ga">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/hibernate/hibernate/3.2.5.ga/hibernate-3.2.5.ga.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.5.ga/hibernate-3.2.5.ga.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/hibernate/hibernate/3.2.5.ga/hibernate-3.2.5.ga-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.5.ga/hibernate-3.2.5.ga-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/hibernate/hibernate/3.2.5.ga/hibernate-3.2.5.ga-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.5.ga/hibernate-3.2.5.ga-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

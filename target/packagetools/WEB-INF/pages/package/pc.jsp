@@ -116,7 +116,6 @@
   <tr>
     <td class="v"><a href="${ctx}/savelink" >Backend Link Saved Page</a></td>
   </tr>
-<!--Package apk link-->
 <c:forEach var="m" items="${message}" varStatus="id">
   <table style='width:100%'>
     <tr>

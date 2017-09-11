@@ -184,7 +184,10 @@ public class AndroidPack implements AndroidPackInterface{
                 //取消上传mapping文件夹功能
                 //new File(config_android.getStore_root_path() + "/mapping/"+pack_android_svn_version).mkdirs();
                 //String zh2 = "cp -r " + svnInfo_android.getLocal_path() + mapping_path + " " + config_android.getStore_root_path() + "/mapping/"+pack_android_svn_version;
-                String zh2 ="";
+
+                //配合soma-test,在桌面生成soma.apk包
+                String zh2 = "rm -rf " + "/Users/"+System.getProperties().getProperty("user.name") + "/Desktop/" + project_android.getProductname() + ".apk" +"\n";
+                zh2 =zh2 + "cp " + svnInfo_android.getLocal_path() + apk_abs_path + " " + "/Users/"+System.getProperties().getProperty("user.name") + "/Desktop/" + project_android.getProductname() + ".apk";
                 log.level("debug", "command_after_system_auto_set :" + zh1+"\n"+zh2);
                 myScript.run_command_file(zh1+"\n"+zh2, pack_excute_path_android, "debug");
                 zh2 = "apkname="+pack_dir_name+"\napkpath="+pack_dir_path + "/online/" + project_android.getProductname() + ".apk\n";

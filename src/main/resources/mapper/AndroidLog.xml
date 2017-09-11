@@ -50,15 +50,14 @@
         select file_name from androidlog order by id DESC limit #{start_flag},#{end_flag}
     </select>
 
-    <insert id="addAndroidLog" parameterType="bean.AndroidLog"
+ <insert id="addAndroidLog" parameterType="bean.AndroidLog"
             useGeneratedKeys="true" keyProperty="id">
         insert into androidlog(packname,main_version,svn_version,file_name,store_root_path,store_path,svn_url,product_name,edition,platform,mode,on_off,ip,nums,pack_time,isstore,viewflag,exone,extwo,exthree)
         values(#{packname},#{main_version},#{svn_version},#{file_name},#{store_root_path},#{store_path},#{svn_url},#{product_name},#{edition},#{platform},#{mode},#{on_off},#{ip},#{nums},#{pack_time},#{isstore},#{viewflag},#{exone},#{extwo},#{exthree})
     </insert>
 
     <update id="updateAndroidLog" parameterType="bean.AndroidLog" >
-        update androidlog set
-        packname=#{packname},main_version=#{main_version},svn_version=#{svn_version},file_name=#{file_name},store_root_path=#{store_root_path},store_path=#{store_path},svn_url=#{svn_url},
+       update androidlog set packname=#{packname},main_version=#{main_version},svn_version=#{svn_version},file_name=#{file_name},store_root_path=#{store_root_path},store_path=#{store_path},svn_url=#{svn_url},
         product_name=#{product_name},edition=#{edition},platform=#{platform},mode=#{mode},on_off=#{on_off},ip=#{ip},nums=#{nums},pack_time=#{pack_time},isstore=#{isstore},viewflag=#{viewflag},exone=#{exone},extwo=#{extwo},exthree=#{exthree}
         where id=#{id}
     </update>

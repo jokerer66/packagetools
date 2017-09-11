@@ -30,7 +30,7 @@ public class AddInfoController {
 
         List<Project> projectlist = null;
         projectlist = DealProject.getInstance().getallproject();
-        model.addAttribute("projectlist", projectlist);
+        model.addAttribute("projectlist",projectlist);
 
         return "/database/addinfo";
     }
@@ -64,7 +64,7 @@ public class AddInfoController {
 
         } else {
 
-            page_info = svnInfo.getPid() + "|" + svnInfo.getPackname() + "|" + svnInfo.getSvn_url() + "|" + svnInfo.getMain_version() + "|" + svnInfo.getProjectname() + "|" + svnInfo.getIsautopack();
+            page_info = svnInfo.getPid() + "|" + svnInfo.getPackname() + "|" + svnInfo.getSvn_url() + "|" + svnInfo.getMain_version() + "|" +svnInfo.getProjectname()+"|"+svnInfo.getIsautopack();
 
         }
 
@@ -74,7 +74,7 @@ public class AddInfoController {
 
     @RequestMapping(value = "saveInfoquick", method = RequestMethod.POST)
     @ResponseBody
-    public String saveInfoquick(@RequestParam String ctr_pid, String ctr_projectname, String ctr_packname, String ctr_svnurl, String ctr_main_version, String ctr_isautopack) {
+    public String saveInfoquick(@RequestParam String ctr_pid, String ctr_projectname,String ctr_packname, String ctr_svnurl, String ctr_main_version,String ctr_isautopack) {
 
         String flag_saveinfoquick = "0";
         Map page_map = new HashMap();
@@ -101,7 +101,7 @@ public class AddInfoController {
         } else {
 
             page_map.put("ctr_pid", ctr_pid.trim());
-            page_map.put("ctr_projectname", ctr_projectname.trim());
+            page_map.put("ctr_projectname",ctr_projectname.trim());
             page_map.put("ctr_packname", ctr_packname.trim());
             page_map.put("ctr_svnurl", ctr_svnurl.trim());
             page_map.put("ctr_main_version", ctr_main_version.trim());
@@ -115,14 +115,14 @@ public class AddInfoController {
 
     @RequestMapping(value = "delete_svninfo_config", method = RequestMethod.POST)
     @ResponseBody
-    public String delete_svninfo_config(@RequestParam String packname) {
+    public String delete_svninfo_config(@RequestParam String packname){
 
         String flag_delete_svninfo_config = null;
 
 
         flag_delete_svninfo_config = DealSvnInfo.getInstance().deleteSvnInfo(packname);
 
-        if (flag_delete_svninfo_config.contains("0")) {
+        if(flag_delete_svninfo_config.contains("0")) {
 
             flag_delete_svninfo_config = DealConfig.getInstance().deleteConfig(packname);
 
@@ -132,9 +132,9 @@ public class AddInfoController {
         return flag_delete_svninfo_config;
     }
 
-    @RequestMapping(value = "delete_dsym", method = RequestMethod.POST)
+    @RequestMapping(value = "delete_dsym",method = RequestMethod.POST)
     @ResponseBody
-    public String delete_dsym_page() {
+    public String delete_dsym_page(){
 
         String flag_delete_dsym = "0";
 

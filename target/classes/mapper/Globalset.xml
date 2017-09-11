@@ -5,7 +5,7 @@
     <update id="updateGlobalset" parameterType="bean.GlobalSet">
         UPDATE globalset SET  sdkinfo=#{sdkinfo},
         codepath=#{codepath},android_packpath=#{android_packpath},ios_packpath=#{ios_packpath},tomcat_path=#{tomcat_path},downipa_filename=#{downipa_filename},svnusername=#{svnusername},svnpassword=#{svnpassword},hostip=#{hostip},
-        autopackstarthour=#{autopackstarthour},autopackstartminute=#{autopackstartminute},autopackperiod=#{autopackperiod}
+        autopackstarthour=#{autopackstarthour},autopackstartminute=#{autopackstartminute},autopackperiod=#{autopackperiod},httprequest=#{httprequest}
         WHERE setid=#{setid}
     </update>
 

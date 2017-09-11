@@ -96,9 +96,10 @@ CREATE TABLE `globalset` (
   `svnusername` varchar(255) DEFAULT NULL,
   `svnpassword` varchar(255) DEFAULT NULL,
   `downipa_filename` varchar(255) DEFAULT NULL,
-  'autopackstarthour'  varchar(255) DEFAULT NULL,
-  'autopackstartminute'  varchar(255) DEFAULT NULL,
-  'autopackperiod'  varchar(255) DEFAULT NULL,
+  `autopackstarthour` varchar(255) DEFAULT NULL,
+  `autopackstartminute` varchar(255) DEFAULT NULL,
+  `autopackperiod` varchar(255) DEFAULT NULL,
+  `httprequest` varchar(2550) DEFAULT NULL,
   PRIMARY KEY (`setid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -187,7 +188,6 @@ CREATE TABLE `svninfo` (
   `busy_status` varchar(255) DEFAULT NULL COMMENT '忙碌busy，空闲free',
   `in_time` datetime DEFAULT NULL,
   `sort` varchar(10) DEFAULT NULL COMMENT '页面显示排序',
-  `isautopack` varchar(10) DEFAULT NULL COMMENT '0,1',
   `exone` varchar(255) DEFAULT NULL,
   `extwo` varchar(255) DEFAULT NULL,
   `exthree` varchar(255) DEFAULT NULL,
@@ -208,21 +208,5 @@ CREATE TABLE `user` (
   `userAddress` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
--- ----------------------------
---  Table structure for `savelink` create by catty only for pagelink saved
--- ----------------------------
-DROP TABLE IF EXISTS `savelink`;
-CREATE TABLE `savelink` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `projectname` varchar(255) DEFAULT NULL,
-  `linkname` varchar(255) DEFAULT NULL,
-  `link` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `passwd` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
-
 
 SET FOREIGN_KEY_CHECKS = 1;

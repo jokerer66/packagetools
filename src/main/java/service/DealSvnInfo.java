@@ -28,13 +28,13 @@ public class DealSvnInfo {
     }
 
     //方法0：构造函数，文件加载，类加载初始化
-    public DealSvnInfo() {
+    public DealSvnInfo(){
         ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
         iSvnInfoOperation = (ISvnInfoOperation) ctx.getBean("svnInfoDao");
     }
 
     //方法1：获取svninfo表中的所有数据
-    public List<SvnInfo> getSvnInfos() {
+    public List<SvnInfo> getSvnInfos(){
 
 //        ApplicationContext  ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
 //        ISvnInfoOperation iSvnInfoOperation = (ISvnInfoOperation) ctx.getBean("svnInfoDao");
@@ -46,7 +46,7 @@ public class DealSvnInfo {
     }
 
     //方法2：获取svninfo表中的数据行数
-    public int getSvnInfoNums() {
+    public int getSvnInfoNums(){
 
         int svninfo_nums = 0;
         svninfo_nums = iSvnInfoOperation.selectSvnInfoNums();
@@ -55,7 +55,7 @@ public class DealSvnInfo {
     }
 
     //方法3：获取打包名称用于界面显示
-    public List<String> getPackNamesByPlatform(String platform) {
+    public List<String> getPackNamesByPlatform(String platform){
 
         List<String> packnames = new ArrayList<String>();
 
@@ -71,7 +71,7 @@ public class DealSvnInfo {
     }
 
     //方法4：获取相关平台的所有数据
-    public List<SvnInfo> getSvnInfosByPlatform(String platform) {
+    public List<SvnInfo> getSvnInfosByPlatform(String platform){
 
 
         List<SvnInfo> svnInfos = iSvnInfoOperation.selectSvnInfosByPlatform(platform);
@@ -82,7 +82,7 @@ public class DealSvnInfo {
     //方法5：返回所有数据的packname值
     public List<String> getAllSvnInfoNames() {
 
-        List<String> packnames = iSvnInfoOperation.getAllSvnInfoNames();
+        List<String> packnames  = iSvnInfoOperation.getAllSvnInfoNames();
 
         return packnames;
 
@@ -124,22 +124,22 @@ public class DealSvnInfo {
     public boolean addSvnInfo(SvnInfo svnInfo) {
 
         iSvnInfoOperation.addSvnInfo(svnInfo);
-        return svnInfo.getId() > 0 ? true : false;
+        return svnInfo.getId()>0?true:false;
 
     }
 
     //方法11：更新逻辑：页面上除了packname外其他选项都可以更新。从界面接收所有修改或未修改的内容，同时进行更新。
     public Boolean updateSvnInfo(SvnInfo svnInfo) {
 
-        return iSvnInfoOperation.updateSvnInfo(svnInfo) >= 0 ? true : false;
+        return iSvnInfoOperation.updateSvnInfo(svnInfo)>=0?true:false;
     }
 
     //方法12：通过平台类型更新繁忙标志
-    public String updateBusyStatusByPlatform(String busy_status, String platform, String productname) {
+    public String updateBusyStatusByPlatform(String busy_status,String platform,String productname){
 
         String flag_update_svninfo = "0";
 
-        List<SvnInfo> svnInfos = iSvnInfoOperation.selectSvnInfosByPlatformAndProductname(platform, productname);
+        List<SvnInfo> svnInfos = iSvnInfoOperation.selectSvnInfosByPlatformAndProductname(platform,productname);
 
         for (SvnInfo svnInfo : svnInfos) {
 
@@ -150,7 +150,7 @@ public class DealSvnInfo {
         }
 
         return flag_update_svninfo;
-    }
+        }
 
     //方法13：根据packname删除记录
     public String deleteSvnInfo(String packname) {
@@ -164,21 +164,21 @@ public class DealSvnInfo {
     }
 
     //方法13：
-    public Boolean flagnotbusy(String platform, String productname) {
+    public Boolean flagnotbusy(String platform ,String productname) {
 
 
-        List<SvnInfo> listnotbusy = iSvnInfoOperation.selectnotbusy(platform, productname);
+        List<SvnInfo> listnotbusy= iSvnInfoOperation.selectnotbusy(platform,productname);
 
-        return listnotbusy.size() == 0 ? true : false;
+        return listnotbusy.size()==0?true:false;
 
     }
 
-    public List<SvnInfo> getAllSvninfoByProjectname(String projectname) {
+    public List<SvnInfo> getAllSvninfoByProjectname (String projectname){
         return iSvnInfoOperation.getAllSvninfoByProjectname(projectname);
 
     }
 
-    public List<SvnInfo> getLastSvn(String platform) {
+    public List<SvnInfo> getLastSvn(String platform){
         return iSvnInfoOperation.getLastSvn(platform);
     }
 

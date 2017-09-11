@@ -11,11 +11,11 @@
     <title>rrrr</title>
 </head>
 <body>
-<table>
-    <tr>
-        <td><input value="ssss"></td>
-        <td><a href="test2/index3.jsp">test</a></td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <td><input value="ssss"></td>
+            <td><a href="test2/index3.jsp">test</a></td>
+        </tr>
+    </table>
 </body>
 </html>

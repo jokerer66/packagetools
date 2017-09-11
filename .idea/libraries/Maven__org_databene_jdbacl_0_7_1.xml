@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.databene:jdbacl:0.7.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/databene/jdbacl/0.7.1/jdbacl-0.7.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/databene/jdbacl/0.7.1/jdbacl-0.7.1.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/databene/jdbacl/0.7.1/jdbacl-0.7.1-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/databene/jdbacl/0.7.1/jdbacl-0.7.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../m2/repo/org/databene/jdbacl/0.7.1/jdbacl-0.7.1-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/databene/jdbacl/0.7.1/jdbacl-0.7.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -25,7 +25,6 @@ public class PackInfo implements PackInfoInterface {
     MyLogTest log = null;
     MyTime myTime = null;
     private static PackInfo packInfo;
-
     public static PackInfo getInstance() {
         if (packInfo == null) {
             synchronized (PackInfo.class) {
@@ -36,7 +35,6 @@ public class PackInfo implements PackInfoInterface {
         }
         return packInfo;
     }
-
     public PackInfo() {
         myTime = MyTime.getInstance();
         log = MyLogTest.getInstance();
@@ -45,13 +43,13 @@ public class PackInfo implements PackInfoInterface {
     @Override
     public String savepackinfo(Map page_map) {
         MyLogTest log = MyLogTest.getInstance();
-        log.level("debug", "save packinfo to database with packname:" + page_map.get("ctr_packname"));
-        if (((String) page_map.get("ctr_pid")).contains("do not need to write")) {
+        log.level("debug","save packinfo to database with packname:"+page_map.get("ctr_packname"));
+        if (((String)page_map.get("ctr_pid")).contains("do not need to write")){
             //新增
-            return savepackinfo(page_map, "1");
-        } else {
+            return savepackinfo(page_map,"1");
+        }else{
             //编辑
-            return savepackinfo(page_map, "2");
+            return savepackinfo(page_map,"2");
 
         }
 
@@ -59,15 +57,14 @@ public class PackInfo implements PackInfoInterface {
 
     /**
      * 保存
-     *
      * @param page_map
      * @param savetpye 1-新增,2-编辑
      * @return
      */
-    public String savepackinfo(Map page_map, String savetpye) {
+    public String savepackinfo(Map page_map,String savetpye){
 
-        String flag = "";
-        Project project = DealProject.getInstance().getProjectByname((String) page_map.get("ctr_projectname"));
+        String flag="";
+        Project project = DealProject.getInstance().getProjectByname((String)page_map.get("ctr_projectname"));
         SvnInfo svnInfo1 = new SvnInfo();
         Config config1 = new Config();
         GlobalSet globalSet = DealGlobalset.getInstance().getGlobalset();
@@ -77,31 +74,31 @@ public class PackInfo implements PackInfoInterface {
         String store_path_deal = null;
         String versions_path_deal = "";
         String packpath = "";
-        if (project.getPlatform().equals("android")) {
+        if(project.getPlatform().equals("android")){
             packpath = globalSet.getAndroid_packpath();
-        } else if (project.getPlatform().equals("ios")) {
+        }else if(project.getPlatform().equals("ios")){
             packpath = globalSet.getIos_packpath();
             versions_path_deal = "versions";
         }
 
-        store_path_deal = packpath.substring(packpath.lastIndexOf("/") + 1);
-        store_root_path = packpath.substring(0, packpath.lastIndexOf("/"));
+        store_path_deal = packpath.substring(packpath.lastIndexOf("/")+1);
+        store_root_path = packpath.substring(0,packpath.lastIndexOf("/"));
 
         int xx = 0;
-        if (DealSvnInfo.getInstance().getSvnInfoNums() == 0) {
+        if(DealSvnInfo.getInstance().getSvnInfoNums() == 0){
             xx = 1000;
-        } else {
+        }else{
             xx = DealSvnInfo.getInstance().getMaxPid() + 1;
         }
 
-        if (savetpye.equals("1")) {
+        if(savetpye.equals("1")){
             svnInfo1.setPid(xx);
             config1.setPid(xx);
             svnInfo1.setSort(xx + "");
-        } else {
-            svnInfo1.setPid(Integer.valueOf((String) page_map.get("ctr_pid")));
-            config1.setPid(Integer.valueOf((String) page_map.get("ctr_pid")));
-            svnInfo1.setSort(xx - 1 + "");
+        }else{
+            svnInfo1.setPid(Integer.valueOf((String)page_map.get("ctr_pid")));
+            config1.setPid(Integer.valueOf((String)page_map.get("ctr_pid")));
+            svnInfo1.setSort(xx-1 + "");
         }
         //增加svninfo表数据
         svnInfo1.setPackname(page_map.get("ctr_packname").toString());
@@ -134,17 +131,17 @@ public class PackInfo implements PackInfoInterface {
         config1.setExone("");
         config1.setExtwo("");
 
-        if (savetpye.equals("1")) {
-            if (DealSvnInfo.getInstance().addSvnInfo(svnInfo1) && DealConfig.getInstance().addConfig(config1)) {
+        if(savetpye.equals("1")){
+            if(DealSvnInfo.getInstance().addSvnInfo(svnInfo1) && DealConfig.getInstance().addConfig(config1)){
                 flag = "1";
-            } else {
-                flag = "0";
+            }else{
+                flag ="0";
             }
-        } else {
-            if (DealSvnInfo.getInstance().updateSvnInfo(svnInfo1) && DealConfig.getInstance().updateConfig(config1)) {
+        }else{
+            if(DealSvnInfo.getInstance().updateSvnInfo(svnInfo1) && DealConfig.getInstance().updateConfig(config1)){
                 flag = "3";
-            } else {
-                flag = "2";
+            }else{
+                flag ="2";
 
             }
         }
