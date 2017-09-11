@@ -97,7 +97,7 @@
 
   <c:forEach var="item" items="${iosLogs}">
 
-    <tr><td width="85%" height="200px"><p class='v'><a href="itms-services://?action=download-manifest&url=https://192.168.2.203:8443/downipa/${downipa_filename}/${item.file_name}/online/manifest.plist" >${item.file_name}</a><br></p></td>
+    <tr><td width="85%" height="200px"><p class='v'><a href="itms-services://?action=download-manifest&url=https://${systemip}:8443/downipa/${downipa_filename}/${item.file_name}/online/manifest.plist" >${item.file_name}</a><br></p></td>
     <td width="10%" height="200px"><p class='v1'><a href="/download?file_url=${item.store_root_path}/${item.store_path}/${item.file_name}/online/${item.product_name}.ipa" >Down</a></p></td>
     </tr>
 
